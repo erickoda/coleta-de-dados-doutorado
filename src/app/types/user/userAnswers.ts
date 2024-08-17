@@ -1,12 +1,7 @@
-enum Gender {
-  Female = "Feminino",
-  Male = "Masculino",
-  Non_Binary = "Não-binário",
-  Not_Informed = "Prefiro não informar",
-}
+import Gender from "./gender";
 
-type User = {
-  termo_de_consentimento: {
+type UserAnswers = {
+  consent_statement: {
     accepted: boolean;
     email: string;
     full_name: string;
@@ -20,5 +15,4 @@ type User = {
   };
 };
 
-export { Gender };
-export default User;
+export default UserAnswers;

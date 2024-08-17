@@ -6,6 +6,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { PagesProvider } from "./context/pages";
 import PageRenderer from "./components/Pages";
+import Layout from "./components/Global/Layout";
+import { AnswersProvider } from "./context/answers";
 
 const darkTheme = createTheme({
   palette: {
@@ -18,12 +20,12 @@ export default function Home() {
     <ThemeProvider theme={darkTheme}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <PagesProvider>
-          <CssBaseline />
-          <main className="flex col min-h-screen bg-neutral-900 flex-col items-center justify-center">
-            <div className="flex flex-col items-start justify-start bg-neutral-700 rounded-base p-4 text-neutral-100 max-w-3xl space-y-3">
+          <AnswersProvider>
+            <CssBaseline />
+            <Layout>
               <PageRenderer />
-            </div>
-          </main>
+            </Layout>
+          </AnswersProvider>
         </PagesProvider>
       </LocalizationProvider>
     </ThemeProvider>

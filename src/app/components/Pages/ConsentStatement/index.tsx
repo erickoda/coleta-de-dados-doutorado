@@ -1,13 +1,30 @@
 "use client";
 
+import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
 import { Button, Checkbox, TextField } from "@mui/material";
 import React from "react";
 
 const ConsentStatement = () => {
   const { go_to_next_page } = usePages();
+  const { userAnswers, setUserAnswers } = useAnswers();
 
   const paragraph_style = "font-normal text-sm text-justify";
+
+  const isUserDataValid = () => {
+    if (
+      userAnswers.consent_statement.email === "" ||
+      userAnswers.consent_statement.email.match(
+        /^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/
+      ) ||
+      userAnswers.consent_statement.full_name === "" ||
+      !userAnswers.consent_statement.accepted
+    ) {
+      alert("Preencha todos os campos");
+      return false;
+    }
+    return true;
+  };
 
   return (
     <>
@@ -92,7 +109,19 @@ const ConsentStatement = () => {
       </h3>
 
       <div className="flex flex-row justify-center items-center space-x-1 text-sm">
-        <Checkbox className="m-0 p-0" />{" "}
+        <Checkbox
+          onClick={() =>
+            setUserAnswers({
+              ...userAnswers,
+              consent_statement: {
+                ...userAnswers.consent_statement,
+                accepted: !userAnswers.consent_statement.accepted,
+              },
+            })
+          }
+          checked={userAnswers.consent_statement.accepted}
+          className="m-0 p-0"
+        />{" "}
         <label htmlFor="">
           {" "}
           Li e concordo com o termo de consentimento e aceito participar
@@ -105,15 +134,49 @@ const ConsentStatement = () => {
           label="Email"
           size="small"
           className="w-1/3"
+          error={
+            userAnswers.consent_statement.email.match(
+              /^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/
+            )
+              ? false
+              : true
+          }
+          required
+          onChange={(e) => {
+            setUserAnswers({
+              ...userAnswers,
+              consent_statement: {
+                ...userAnswers.consent_statement,
+                email: e.target.value,
+              },
+            });
+          }}
         />
         <TextField
           id="outlined-basic"
           label="Nome Completo"
           size="small"
           className="w-1/3"
+          error={userAnswers.consent_statement.full_name === ""}
+          required
+          onChange={(e) => {
+            setUserAnswers({
+              ...userAnswers,
+              consent_statement: {
+                ...userAnswers.consent_statement,
+                full_name: e.target.value,
+              },
+            });
+          }}
         />
         <Button
-          onClick={() => go_to_next_page()}
+          onClick={() => {
+            if (!isUserDataValid()) {
+              return;
+            }
+
+            go_to_next_page();
+          }}
           variant="contained"
           className="w-1/3"
         >

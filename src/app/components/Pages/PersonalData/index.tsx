@@ -3,7 +3,7 @@
 import React from "react";
 import Paragraph from "../../Global/Paragraph";
 import Title from "../../Global/Title";
-import { Gender } from "@/app/types/user";
+import Gender from "@/app/types/user/gender";
 import {
   Button,
   FormControl,
