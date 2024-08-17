@@ -1,9 +1,12 @@
 "use client";
 
+import { usePages } from "@/app/context/pages";
 import { Button, Checkbox, TextField } from "@mui/material";
 import React from "react";
 
 const ConsentStatement = () => {
+  const { go_to_next_page } = usePages();
+
   const paragraph_style = "font-normal text-sm text-justify";
 
   return (
@@ -109,7 +112,11 @@ const ConsentStatement = () => {
           size="small"
           className="w-1/3"
         />
-        <Button variant="contained" className="w-1/3">
+        <Button
+          onClick={() => go_to_next_page()}
+          variant="contained"
+          className="w-1/3"
+        >
           Continuar
         </Button>
       </div>

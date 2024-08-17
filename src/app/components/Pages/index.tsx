@@ -1,5 +1,11 @@
-import ConsentStatement from "./ConsentStatement";
-import Instructions from "./Instructions";
-import PersonalData from "./PersonalData";
+"use client";
 
-const PagesQueue = [ConsentStatement, PersonalData, Instructions];
+import { usePages } from "@/app/context/pages";
+
+const PageRenderer = () => {
+  const { actual_page } = usePages();
+
+  return <>{actual_page}</>;
+};
+
+export default PageRenderer;

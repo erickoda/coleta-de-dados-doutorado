@@ -1,8 +1,14 @@
+"use client";
+
 import React from "react";
 import Title from "../../Global/Title";
 import Paragraph from "../../Global/Paragraph";
+import { Button } from "@mui/material";
+import { usePages } from "@/app/context/pages";
 
 const Instructions = () => {
+  const { go_to_next_page, go_to_previous_page } = usePages();
+
   return (
     <>
       <div className="flex flex-col space-y-1">
@@ -53,6 +59,25 @@ const Instructions = () => {
           Isso pode interferir nos resultados do estudo. Ao término deste
           treino, você deverá clicar em Próximo.
         </Paragraph>
+      </div>
+
+      <div className="flex flex-row justify-center w-full space-x-2">
+        <Button
+          onClick={() => {
+            go_to_previous_page();
+          }}
+          variant="text"
+        >
+          Voltar
+        </Button>
+        <Button
+          onClick={() => {
+            go_to_next_page();
+          }}
+          variant="contained"
+        >
+          Começar!
+        </Button>
       </div>
     </>
   );

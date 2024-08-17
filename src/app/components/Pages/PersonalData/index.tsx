@@ -14,8 +14,11 @@ import {
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import Devices from "@/app/types/device";
+import { usePages } from "@/app/context/pages";
 
 const PersonalData = () => {
+  const { go_to_next_page, go_to_previous_page } = usePages();
+
   return (
     <>
       <article className="flex flex-col">
@@ -65,8 +68,18 @@ const PersonalData = () => {
           </Select>
         </FormControl>
 
-        <div className="col-span-2 flex flex-row justify-end items-center">
-          <Button variant="outlined">Continuar</Button>
+        <div className="col-span-2 flex flex-row justify-end items-center space-x-2">
+          <Button
+            onClick={() => {
+              go_to_previous_page();
+            }}
+            variant="text"
+          >
+            Voltar
+          </Button>
+          <Button onClick={() => go_to_next_page()} variant="outlined">
+            Continuar
+          </Button>
         </div>
       </div>
     </>
