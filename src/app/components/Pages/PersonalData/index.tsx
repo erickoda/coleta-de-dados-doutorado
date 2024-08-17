@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import Paragraph from "../Global/Paragraph";
-import Title from "../Global/Title";
+import Paragraph from "../../Global/Paragraph";
+import Title from "../../Global/Title";
 import { Gender } from "@/app/types/user";
 import {
   Button,

@@ -1,4 +1,4 @@
-export enum Gender {
+enum Gender {
   Female = "Feminino",
   Male = "Masculino",
   Non_Binary = "Não-binário",
@@ -20,4 +20,5 @@ type User = {
   };
 };
 
+export { Gender };
 export default User;
