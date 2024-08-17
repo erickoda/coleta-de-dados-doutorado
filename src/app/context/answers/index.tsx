@@ -8,7 +8,7 @@ const AnswersContext = createContext<AnswersContextT>({} as AnswersContextT);
 const AnswersProvider = ({ children }: ContextProviderProps) => {
   const [userAnswers, setUserAnswers] = useState<UserAnswers>({
     consent_statement: {
-      accepted: true,
+      accepted: false,
       email: "",
       full_name: "",
     },

@@ -2,6 +2,7 @@
 
 import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
+import isEmailValid from "@/app/utils/isEmailValid";
 import { Button, Checkbox, TextField } from "@mui/material";
 import React from "react";
 
@@ -13,12 +14,9 @@ const ConsentStatement = () => {
 
   const isUserDataValid = () => {
     if (
-      userAnswers.consent_statement.email === "" ||
-      userAnswers.consent_statement.email.match(
-        /^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/
-      ) ||
+      !isEmailValid(userAnswers.consent_statement.email) ||
       userAnswers.consent_statement.full_name === "" ||
-      !userAnswers.consent_statement.accepted
+      userAnswers.consent_statement.accepted === false
     ) {
       alert("Preencha todos os campos");
       return false;
@@ -134,14 +132,9 @@ const ConsentStatement = () => {
           label="Email"
           size="small"
           className="w-1/3"
-          error={
-            userAnswers.consent_statement.email.match(
-              /^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/
-            )
-              ? false
-              : true
-          }
+          error={!isEmailValid(userAnswers.consent_statement.email)}
           required
+          value={userAnswers.consent_statement.email}
           onChange={(e) => {
             setUserAnswers({
               ...userAnswers,
@@ -159,6 +152,7 @@ const ConsentStatement = () => {
           className="w-1/3"
           error={userAnswers.consent_statement.full_name === ""}
           required
+          value={userAnswers.consent_statement.full_name}
           onChange={(e) => {
             setUserAnswers({
               ...userAnswers,
