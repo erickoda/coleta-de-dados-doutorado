@@ -1,13 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Title from "../../Global/Title";
 import Paragraph from "../../Global/Paragraph";
-import { Button } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import { usePages } from "@/app/context/pages";
 
 const Instructions = () => {
   const { go_to_next_page, go_to_previous_page } = usePages();
+
+  const [isStartAvailable, setIsStartAvailable] = React.useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsStartAvailable(true), 5000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <>
@@ -70,14 +78,17 @@ const Instructions = () => {
         >
           Voltar
         </Button>
-        <Button
-          onClick={() => {
-            go_to_next_page();
-          }}
-          variant="contained"
-        >
-          Começar!
-        </Button>
+        <Tooltip title="Por favor, leia as instruções antes de começar!">
+          <Button
+            onClick={() => {
+              go_to_next_page();
+            }}
+            variant="contained"
+            disabled={!isStartAvailable}
+          >
+            Começar!
+          </Button>
+        </Tooltip>
       </div>
     </>
   );
