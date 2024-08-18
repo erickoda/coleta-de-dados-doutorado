@@ -21,6 +21,30 @@ const PersonalData = () => {
   const { go_to_next_page, go_to_previous_page } = usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
 
+  const isUsersAnswersValid = (): boolean => {
+    if (userAnswers.personal_information.birth_date === null) {
+      alert("Data de nascimento inválida");
+      return false;
+    }
+
+    if (userAnswers.personal_information.device === "") {
+      alert("Dispositivo inválido");
+      return false;
+    }
+
+    if (userAnswers.personal_information.job_or_education_or_course === "") {
+      alert("Profissão/Grau de Escolaridade/Curso inválido");
+      return false;
+    }
+
+    if (!userAnswers.personal_information.gender) {
+      alert("Gênero inválido");
+      return false;
+    }
+
+    return true;
+  };
+
   return (
     <>
       <article className="flex flex-col">
@@ -144,7 +168,15 @@ const PersonalData = () => {
           >
             Voltar
           </Button>
-          <Button onClick={() => go_to_next_page()} variant="outlined">
+          <Button
+            onClick={() => {
+              if (!isUsersAnswersValid()) {
+                return;
+              }
+              go_to_next_page();
+            }}
+            variant="outlined"
+          >
             Continuar
           </Button>
         </div>
