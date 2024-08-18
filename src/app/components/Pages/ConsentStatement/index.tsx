@@ -13,12 +13,16 @@ const ConsentStatement = () => {
   const paragraph_style = "font-normal text-sm text-justify";
 
   const isUserDataValid = () => {
-    if (
-      !isEmailValid(userAnswers.consent_statement.email) ||
-      userAnswers.consent_statement.full_name === "" ||
-      userAnswers.consent_statement.accepted === false
-    ) {
-      alert("Preencha todos os campos");
+    if (!isEmailValid(userAnswers.consent_statement.email)) {
+      alert("Email Inválido");
+      return false;
+    }
+    if (userAnswers.consent_statement.full_name === "") {
+      alert("Nome Inválido");
+      return false;
+    }
+    if (userAnswers.consent_statement.accepted === false) {
+      alert("Termo de consentimento não aceito");
       return false;
     }
     return true;
