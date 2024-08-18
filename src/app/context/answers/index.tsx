@@ -14,10 +14,10 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
     },
     personal_information: {
       gender: Gender.Female,
-      birth_date: new Date(),
+      birth_date: null,
       job_or_education_or_course: "",
       educational_institution: "",
-      dispositive: "",
+      device: "",
     },
   } as UserAnswers);
 

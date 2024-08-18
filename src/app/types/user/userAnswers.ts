@@ -1,3 +1,4 @@
+import { Dayjs } from "dayjs";
 import Gender from "./gender";
 
 type UserAnswers = {
@@ -8,10 +9,10 @@ type UserAnswers = {
   };
   personal_information: {
     gender: Gender;
-    birth_date: Date;
+    birth_date: Dayjs | null;
     job_or_education_or_course: string;
     educational_institution: string;
-    dispositive: string;
+    device: string;
   };
 };
 
