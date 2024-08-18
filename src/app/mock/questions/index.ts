@@ -19,3 +19,5 @@ const MockedQuestions: (QuestionFuture | QuestionOtherPerson)[] = [
     other_person_offer: 20,
   } as QuestionOtherPerson,
 ];
+
+export default MockedQuestions;
