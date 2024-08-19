@@ -52,7 +52,7 @@ const Result = () => {
             <Paragraph>
               <strong>Tempo Estimado:</strong>{" "}
               {user_answer?.guessedTimeInMilliseconds
-                ? `${user_answer.guessedTimeInMilliseconds / 100} ms`
+                ? `${user_answer.guessedTimeInMilliseconds / 1000} s`
                 : "Tempo Não Estimado"}
             </Paragraph>
           </div>
