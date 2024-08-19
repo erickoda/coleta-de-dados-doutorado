@@ -59,7 +59,13 @@ const OtherPerson = ({ other_person_question }: OtherPersonProps) => {
           }
           fullWidth
           disabled={isDisabled}
-          variant="outlined"
+          variant={
+            userAnswers.questions_answers.find(
+              (answer) => answer.question_id === other_person_question.id
+            )?.answer === AnswerRole.Reject
+              ? "contained"
+              : "outlined"
+          }
         >
           Recusar
         </Button>
@@ -77,7 +83,13 @@ const OtherPerson = ({ other_person_question }: OtherPersonProps) => {
           }
           fullWidth
           disabled={isDisabled}
-          variant="outlined"
+          variant={
+            userAnswers.questions_answers.find(
+              (answer) => answer.question_id === other_person_question.id
+            )?.answer === AnswerRole.Accept
+              ? "contained"
+              : "outlined"
+          }
         >
           Aceitar
         </Button>

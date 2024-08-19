@@ -49,7 +49,13 @@ const Future = ({ future_question }: FutureProps) => {
           }
           fullWidth
           disabled={isDisabled}
-          variant="outlined"
+          variant={
+            userAnswers.questions_answers.find(
+              (answer) => answer.question_id === future_question.id
+            )?.answer === AnswerRole.Immediate
+              ? "contained"
+              : "outlined"
+          }
         >
           {future_question.closest.value.toLocaleString("pt-BR", {
             style: "currency",
@@ -76,7 +82,13 @@ const Future = ({ future_question }: FutureProps) => {
           }
           fullWidth
           disabled={isDisabled}
-          variant="outlined"
+          variant={
+            userAnswers.questions_answers.find(
+              (answer) => answer.question_id === future_question.id
+            )?.answer === AnswerRole.LongTerm
+              ? "contained"
+              : "outlined"
+          }
         >
           {future_question.furthest.value.toLocaleString("pt-BR", {
             style: "currency",
