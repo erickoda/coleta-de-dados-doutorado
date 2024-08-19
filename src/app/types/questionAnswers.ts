@@ -1,9 +1,9 @@
 enum AnswerRole {
-  Immediate = "Immediate",
-  LongTerm = "LongTerm",
+  Immediate = "Imediata",
+  LongTerm = "Longo Prazo",
 
-  Accept = "Accept",
-  Reject = "Reject",
+  Accept = "Aceito",
+  Reject = "Rejeitado",
 
   None = "None",
 }

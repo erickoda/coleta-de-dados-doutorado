@@ -4,6 +4,7 @@ import { useAnswers } from "@/app/context/answers";
 import MockedQuestions from "@/app/mock/questions";
 import Paragraph from "../../Global/Paragraph";
 import { isQuestionFuture } from "@/app/utils/questions";
+import { AnswerRole } from "@/app/types/questionAnswers";
 
 const Result = () => {
   const { userAnswers } = useAnswers();
@@ -46,7 +47,9 @@ const Result = () => {
             </h3>
             <Paragraph>
               <strong>Resposta do usuário:</strong>{" "}
-              {user_answer?.answer ?? "Nenhuma resposta"}
+              {user_answer?.answer
+                ? AnswerRole[user_answer?.answer as keyof typeof AnswerRole]
+                : "Nenhuma resposta"}
             </Paragraph>
 
             <Paragraph>
