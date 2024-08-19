@@ -6,7 +6,7 @@ export type PagesProviderProps = {
 
 type PageContext = {
   actual_page: React.ReactNode;
-  set_actual_page: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  actual_page_index: number;
 
   go_to_next_page: () => void;
   go_to_previous_page: () => void;

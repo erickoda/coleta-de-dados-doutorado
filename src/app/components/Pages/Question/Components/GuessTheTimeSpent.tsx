@@ -30,7 +30,7 @@ const GuessTheTimeSpent = () => {
   return (
     <>
       <Title>Tente Simular o Tempo da Última questão</Title>
-      <div className="flex flex-row space-x-2">
+      <div className="flex flex-row space-x-2 w-full">
         <Button
           onClick={() => setStep("guessing")}
           disabled={step !== "initial"}

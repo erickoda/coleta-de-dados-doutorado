@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import PageContext, { PagesProviderProps } from "./types";
 import ConsentStatement from "@/app/components/Pages/ConsentStatement";
 import PersonalData from "@/app/components/Pages/PersonalData";
@@ -39,38 +45,39 @@ function PagesProvider({ children }: PagesProviderProps) {
   };
 
   useEffect(() => {
-    MockedQuestions.forEach((question, index) => {
+    if (pagesQueue.length > 3) return;
+
+    const questions: JSX.Element[] = [];
+
+    for (const question of MockedQuestions) {
       if (isQuestionFuture(question)) {
-        setPagesQueue([
-          ...pagesQueue,
-          <Question.StartStimulus key={`${index} - ${question.id}`} />,
-          <Question.Future
-            key={`${index} - ${question.id}`}
-            future_question={question}
-          />,
-          <Question.GuessTheTimeSpent key={`${index} - ${question.id}`} />,
-        ]);
+        questions.push(<Question.StartStimulus key={question.id} />);
+        questions.push(
+          <Question.Future key={question.id} future_question={question} />
+        );
+        questions.push(<Question.GuessTheTimeSpent key={question.id} />);
+
+        continue;
       }
 
-      if (isQuestionOtherPerson(question)) {
-        setPagesQueue([
-          ...pagesQueue,
-          <Question.StartStimulus key={`${index} - ${question.id}`} />,
-          <Question.OtherPerson
-            key={`${index} - ${question.id}`}
-            other_person_question={question}
-          />,
-          <Question.GuessTheTimeSpent key={`${index} - ${question.id}`} />,
-        ]);
-      }
-    });
+      questions.push(<Question.StartStimulus key={question.id} />);
+      questions.push(
+        <Question.OtherPerson
+          key={question.id}
+          other_person_question={question}
+        />
+      );
+      questions.push(<Question.GuessTheTimeSpent key={question.id} />);
+    }
+
+    setPagesQueue([...pagesQueue, ...questions]);
   }, []);
 
   return (
     <PagesContext.Provider
       value={{
         actual_page,
-        set_actual_page,
+        actual_page_index,
         go_to_next_page,
         go_to_previous_page,
       }}

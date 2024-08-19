@@ -11,13 +11,13 @@ const MockedQuestions: (QuestionFuture | QuestionOtherPerson)[] = [
       value: 55,
       days: 117,
     },
-  } as QuestionFuture,
+  },
 
   {
     id: 2,
     other_person_received_value: 150,
     other_person_offer: 20,
-  } as QuestionOtherPerson,
+  },
 ];
 
 export default MockedQuestions;

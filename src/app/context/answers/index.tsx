@@ -1,7 +1,9 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import AnswersContextT, { ContextProviderProps } from "./types";
 import UserAnswers from "@/app/types/user/userAnswers";
 import Gender from "@/app/types/user/gender";
+import MockedQuestions from "@/app/mock/questions";
+import { AnswerRole } from "@/app/types/questionAnswers";
 
 const AnswersContext = createContext<AnswersContextT>({} as AnswersContextT);
 
@@ -21,6 +23,17 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
     },
     questions_answers: [],
   });
+
+  useEffect(() => {
+    setUserAnswers({
+      ...userAnswers,
+      questions_answers: MockedQuestions.map((question) => ({
+        question_id: question.id,
+        answer: AnswerRole.None,
+        guessedTimeInMilliseconds: 0,
+      })),
+    });
+  }, []);
 
   return (
     <AnswersContext.Provider value={{ userAnswers, setUserAnswers }}>

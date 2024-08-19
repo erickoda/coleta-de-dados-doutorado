@@ -4,10 +4,12 @@ enum AnswerRole {
 
   Accept = "Accept",
   Reject = "Reject",
+
+  None = "None",
 }
 
 type QuestionAnswer = {
-  id: string;
+  question_id: number;
   answer: AnswerRole;
   guessedTimeInMilliseconds: number;
 };
