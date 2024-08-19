@@ -1,5 +1,7 @@
 import Title from "@/app/components/Global/Title";
+import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
+import { AnswerRole } from "@/app/types/questionAnswers";
 import { QuestionOtherPerson } from "@/app/types/questions";
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -10,6 +12,7 @@ type OtherPersonProps = {
 
 const OtherPerson = ({ other_person_question }: OtherPersonProps) => {
   const { go_to_next_page } = usePages();
+  const { userAnswers, setUserAnswers } = useAnswers();
 
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -43,11 +46,39 @@ const OtherPerson = ({ other_person_question }: OtherPersonProps) => {
       </Title>
 
       <div className="flex flex-row space-x-2 w-full">
-        <Button fullWidth disabled={isDisabled} variant="outlined">
+        <Button
+          onClick={() =>
+            setUserAnswers({
+              ...userAnswers,
+              questions_answers: userAnswers.questions_answers.map((answer) =>
+                answer.question_id === other_person_question.id
+                  ? { ...answer, answer: AnswerRole.Reject }
+                  : answer
+              ),
+            })
+          }
+          fullWidth
+          disabled={isDisabled}
+          variant="outlined"
+        >
           Recusar
         </Button>
 
-        <Button fullWidth disabled={isDisabled} variant="outlined">
+        <Button
+          onClick={() =>
+            setUserAnswers({
+              ...userAnswers,
+              questions_answers: userAnswers.questions_answers.map((answer) =>
+                answer.question_id === other_person_question.id
+                  ? { ...answer, answer: AnswerRole.Accept }
+                  : answer
+              ),
+            })
+          }
+          fullWidth
+          disabled={isDisabled}
+          variant="outlined"
+        >
           Aceitar
         </Button>
       </div>

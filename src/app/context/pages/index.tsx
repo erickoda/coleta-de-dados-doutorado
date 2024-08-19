@@ -55,7 +55,12 @@ function PagesProvider({ children }: PagesProviderProps) {
         questions.push(
           <Question.Future key={question.id} future_question={question} />
         );
-        questions.push(<Question.GuessTheTimeSpent key={question.id} />);
+        questions.push(
+          <Question.GuessTheTimeSpent
+            question_id={question.id}
+            key={question.id}
+          />
+        );
 
         continue;
       }
@@ -67,7 +72,12 @@ function PagesProvider({ children }: PagesProviderProps) {
           other_person_question={question}
         />
       );
-      questions.push(<Question.GuessTheTimeSpent key={question.id} />);
+      questions.push(
+        <Question.GuessTheTimeSpent
+          question_id={question.id}
+          key={question.id}
+        />
+      );
     }
 
     setPagesQueue([...pagesQueue, ...questions]);

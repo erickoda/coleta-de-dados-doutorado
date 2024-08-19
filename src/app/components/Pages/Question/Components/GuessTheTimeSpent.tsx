@@ -1,10 +1,16 @@
 import Title from "@/app/components/Global/Title";
+import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
 import { Button } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
 
-const GuessTheTimeSpent = () => {
+type GuessTheTimeSpentProps = {
+  question_id: number;
+};
+
+const GuessTheTimeSpent = ({ question_id }: GuessTheTimeSpentProps) => {
   const { go_to_next_page } = usePages();
+  const { userAnswers, setUserAnswers } = useAnswers();
 
   const [step, setStep] = useState<"initial" | "guessing" | "end">("initial");
   const [initialTime, setInitialTime] = useState<DOMHighResTimeStamp>(0);
@@ -21,7 +27,17 @@ const GuessTheTimeSpent = () => {
     }
 
     const timer = window.requestAnimationFrame(() => {
-      setGuessedTime(performance.now() - initialTime);
+      setUserAnswers({
+        ...userAnswers,
+        questions_answers: userAnswers.questions_answers.map((answer) =>
+          answer.question_id === question_id
+            ? {
+                ...answer,
+                guessedTimeInMilliseconds: performance.now() - initialTime,
+              }
+            : answer
+        ),
+      });
     });
 
     return () => window.cancelAnimationFrame(timer);
