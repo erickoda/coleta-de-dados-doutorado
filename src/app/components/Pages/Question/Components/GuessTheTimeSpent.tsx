@@ -45,7 +45,7 @@ const GuessTheTimeSpent = ({ question_id }: GuessTheTimeSpentProps) => {
 
   return (
     <>
-      <Title>Tente Simular o Tempo da Última questão</Title>
+      <Title>Tente Simular o Tempo da Questão</Title>
       <div className="flex flex-row space-x-2 w-full">
         <Button
           onClick={() => setStep("guessing")}

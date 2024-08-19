@@ -14,6 +14,7 @@ import Instructions from "@/app/components/Pages/Instructions";
 import MockedQuestions from "@/app/mock/questions";
 import Question from "@/app/components/Pages/Question";
 import { isQuestionFuture, isQuestionOtherPerson } from "@/app/utils/questions";
+import Result from "@/app/components/Pages/Result";
 
 const PagesContext = createContext<PageContext>({} as PageContext);
 
@@ -79,6 +80,8 @@ function PagesProvider({ children }: PagesProviderProps) {
         />
       );
     }
+
+    questions.push(<Result key={"end"} />);
 
     setPagesQueue([...pagesQueue, ...questions]);
   }, []);
