@@ -1,3 +1,4 @@
+import Title from "@/app/components/Global/Title";
 import { usePages } from "@/app/context/pages";
 import { Button } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
@@ -26,10 +27,9 @@ const GuessTheTimeSpent = () => {
     return () => window.cancelAnimationFrame(timer);
   }, [step]);
 
-  console.log(guessedTime);
-
   return (
     <>
+      <Title>Tente Simular o Tempo da Última questão</Title>
       <div className="flex flex-row space-x-2">
         <Button
           onClick={() => setStep("guessing")}

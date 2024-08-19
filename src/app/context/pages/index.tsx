@@ -7,7 +7,7 @@ import PersonalData from "@/app/components/Pages/PersonalData";
 import Instructions from "@/app/components/Pages/Instructions";
 import MockedQuestions from "@/app/mock/questions";
 import Question from "@/app/components/Pages/Question";
-import { isQuestionFuture } from "@/app/utils/questions";
+import { isQuestionFuture, isQuestionOtherPerson } from "@/app/utils/questions";
 
 const PagesContext = createContext<PageContext>({} as PageContext);
 
@@ -45,6 +45,15 @@ function PagesProvider({ children }: PagesProviderProps) {
           ...pagesQueue,
           <Question.StartStimulus />,
           <Question.Future future_question={question} />,
+          <Question.GuessTheTimeSpent />,
+        ]);
+      }
+
+      if (isQuestionOtherPerson(question)) {
+        setPagesQueue([
+          ...pagesQueue,
+          <Question.StartStimulus />,
+          <Question.OtherPerson other_person_question={question} />,
           <Question.GuessTheTimeSpent />,
         ]);
       }

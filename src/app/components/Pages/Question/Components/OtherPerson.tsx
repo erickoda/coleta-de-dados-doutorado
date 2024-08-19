@@ -1,7 +1,58 @@
-import React from "react";
+import Title from "@/app/components/Global/Title";
+import { usePages } from "@/app/context/pages";
+import { QuestionOtherPerson } from "@/app/types/questions";
+import { Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
-const OtherPerson = () => {
-  return <div>OtherPerson</div>;
+type OtherPersonProps = {
+  other_person_question: QuestionOtherPerson;
+};
+
+const OtherPerson = ({ other_person_question }: OtherPersonProps) => {
+  const { go_to_next_page } = usePages();
+
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    const timeout_to_enable = setTimeout(() => setIsDisabled(false), 15000);
+    const timeout_to_go_to_next_page = setTimeout(
+      () => go_to_next_page(),
+      20000
+    );
+
+    return () => {
+      clearTimeout(timeout_to_enable);
+      clearTimeout(timeout_to_go_to_next_page);
+    };
+  }, []);
+
+  return (
+    <>
+      <Title>
+        Um participante recebeu{" "}
+        {other_person_question.other_person_received_value.toLocaleString(
+          "pt-BR",
+          { style: "currency", currency: "BRL" }
+        )}{" "}
+        para dividir com você. Ele lhe ofereceu{" "}
+        {other_person_question.other_person_offer.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        })}
+        . Você recusa ou aceita a oferta?.
+      </Title>
+
+      <div className="flex flex-row space-x-2 w-full">
+        <Button fullWidth disabled={isDisabled} variant="outlined">
+          Recusar
+        </Button>
+
+        <Button fullWidth disabled={isDisabled} variant="outlined">
+          Aceitar
+        </Button>
+      </div>
+    </>
+  );
 };
 
 export default OtherPerson;
