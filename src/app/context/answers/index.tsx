@@ -19,9 +19,8 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
       educational_institution: "",
       device: "",
     },
-  } as UserAnswers);
-
-  console.log(userAnswers);
+    questions_answers: [],
+  });
 
   return (
     <AnswersContext.Provider value={{ userAnswers, setUserAnswers }}>

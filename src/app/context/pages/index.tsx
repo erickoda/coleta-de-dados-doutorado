@@ -19,9 +19,9 @@ function PagesProvider({ children }: PagesProviderProps) {
   const [actual_page_index, set_actual_page_index] = useState<number>(0);
 
   const [pagesQueue, setPagesQueue] = useState<JSX.Element[]>([
-    <ConsentStatement />,
-    <PersonalData />,
-    <Instructions />,
+    <ConsentStatement key={"consent statement"} />,
+    <PersonalData key={"persona data"} />,
+    <Instructions key={"instructions"} />,
   ]);
 
   const go_to_next_page = () => {
@@ -39,29 +39,32 @@ function PagesProvider({ children }: PagesProviderProps) {
   };
 
   useEffect(() => {
-    MockedQuestions.forEach((question) => {
+    MockedQuestions.forEach((question, index) => {
       if (isQuestionFuture(question)) {
         setPagesQueue([
           ...pagesQueue,
-          <Question.StartStimulus />,
-          <Question.Future future_question={question} />,
-          <Question.GuessTheTimeSpent />,
+          <Question.StartStimulus key={`${index} - ${question.id}`} />,
+          <Question.Future
+            key={`${index} - ${question.id}`}
+            future_question={question}
+          />,
+          <Question.GuessTheTimeSpent key={`${index} - ${question.id}`} />,
         ]);
       }
 
       if (isQuestionOtherPerson(question)) {
         setPagesQueue([
           ...pagesQueue,
-          <Question.StartStimulus />,
-          <Question.OtherPerson other_person_question={question} />,
-          <Question.GuessTheTimeSpent />,
+          <Question.StartStimulus key={`${index} - ${question.id}`} />,
+          <Question.OtherPerson
+            key={`${index} - ${question.id}`}
+            other_person_question={question}
+          />,
+          <Question.GuessTheTimeSpent key={`${index} - ${question.id}`} />,
         ]);
       }
     });
   }, []);
-
-  console.log("pagesQueue");
-  console.log(pagesQueue);
 
   return (
     <PagesContext.Provider
