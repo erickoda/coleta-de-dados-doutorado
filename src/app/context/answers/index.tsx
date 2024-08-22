@@ -3,7 +3,7 @@ import AnswersContextT, { ContextProviderProps } from "./types";
 import UserAnswers from "@/app/types/user/userAnswers";
 import Gender from "@/app/types/user/gender";
 import MockedQuestions from "@/app/mock/questions";
-import { AnswerRole } from "@/app/types/questionAnswers";
+import QuestionAnswer, { AnswerRole } from "@/app/types/questionAnswers";
 
 const AnswersContext = createContext<AnswersContextT>({} as AnswersContextT);
 
@@ -27,11 +27,19 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
   useEffect(() => {
     setUserAnswers({
       ...userAnswers,
-      questions_answers: MockedQuestions.map((question) => ({
-        question_id: question.id,
-        answer: AnswerRole.None,
-        guessedTimeInMilliseconds: 0,
-      })),
+      questions_answers: (() => {
+        const questions_answers: QuestionAnswer[] = [];
+        for (const block of MockedQuestions.blocks) {
+          for (const question of block) {
+            questions_answers.push({
+              question_id: question.id,
+              answer: AnswerRole.None,
+              guessedTimeInMilliseconds: 0,
+            });
+          }
+        }
+        return questions_answers;
+      })(),
     });
   }, []);
 

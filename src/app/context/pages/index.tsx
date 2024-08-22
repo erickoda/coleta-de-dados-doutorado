@@ -1,19 +1,13 @@
 "use client";
 
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import PageContext, { PagesProviderProps } from "./types";
 import ConsentStatement from "@/app/components/Pages/ConsentStatement";
 import PersonalData from "@/app/components/Pages/PersonalData";
 import Instructions from "@/app/components/Pages/Instructions";
 import MockedQuestions from "@/app/mock/questions";
 import Question from "@/app/components/Pages/Question";
-import { isQuestionFuture, isQuestionOtherPerson } from "@/app/utils/questions";
+import { isQuestionFuture } from "@/app/utils/questions";
 import Result from "@/app/components/Pages/Result";
 
 const PagesContext = createContext<PageContext>({} as PageContext);
@@ -50,11 +44,29 @@ function PagesProvider({ children }: PagesProviderProps) {
 
     const questions: JSX.Element[] = [];
 
-    for (const question of MockedQuestions) {
-      if (isQuestionFuture(question)) {
+    for (const block of MockedQuestions.blocks) {
+      for (const question of block) {
+        if (isQuestionFuture(question)) {
+          questions.push(<Question.StartStimulus key={question.id} />);
+          questions.push(
+            <Question.Future key={question.id} future_question={question} />
+          );
+          questions.push(
+            <Question.GuessTheTimeSpent
+              question_id={question.id}
+              key={question.id}
+            />
+          );
+
+          continue;
+        }
+
         questions.push(<Question.StartStimulus key={question.id} />);
         questions.push(
-          <Question.Future key={question.id} future_question={question} />
+          <Question.OtherPerson
+            key={question.id}
+            other_person_question={question}
+          />
         );
         questions.push(
           <Question.GuessTheTimeSpent
@@ -62,23 +74,7 @@ function PagesProvider({ children }: PagesProviderProps) {
             key={question.id}
           />
         );
-
-        continue;
       }
-
-      questions.push(<Question.StartStimulus key={question.id} />);
-      questions.push(
-        <Question.OtherPerson
-          key={question.id}
-          other_person_question={question}
-        />
-      );
-      questions.push(
-        <Question.GuessTheTimeSpent
-          question_id={question.id}
-          key={question.id}
-        />
-      );
     }
 
     questions.push(<Result key={"end"} />);

@@ -11,21 +11,25 @@ type FutureProps = {
 };
 
 const Future = ({ future_question }: FutureProps) => {
-  const { go_to_next_page } = usePages();
+  const { go_to_next_page, go_to_previous_page } = usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
 
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isAbleToGoToNextPage, setIsAbleToGoToNextPage] = useState(false);
 
   useEffect(() => {
     const timeout_to_enable = setTimeout(() => setIsDisabled(false), 15000);
-    const timeout_to_go_to_next_page = setTimeout(
-      () => go_to_next_page(),
-      20000
-    );
+    const timeout_to_go_to_enable_next_page = setTimeout(() => {
+      userAnswers.questions_answers.find(
+        (answer) => answer.question_id === future_question.id
+      )?.answer === AnswerRole.None
+        ? go_to_previous_page()
+        : setIsAbleToGoToNextPage(true);
+    }, 20000);
 
     return () => {
       clearTimeout(timeout_to_enable);
-      clearTimeout(timeout_to_go_to_next_page);
+      clearTimeout(timeout_to_go_to_enable_next_page);
     };
   }, []);
 
@@ -97,6 +101,14 @@ const Future = ({ future_question }: FutureProps) => {
           em {future_question.furthest.days} dias
         </Button>
       </div>
+      <Button
+        fullWidth
+        disabled={!isAbleToGoToNextPage}
+        variant="contained"
+        onClick={() => go_to_next_page()}
+      >
+        Próximo
+      </Button>
     </>
   );
 };
