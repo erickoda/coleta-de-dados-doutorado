@@ -7,6 +7,7 @@ export type PagesProviderProps = {
 type PageContext = {
   actual_page: React.ReactNode;
   actual_page_index: number;
+  conclusion_percentage: number;
 
   go_to_next_page: () => void;
   go_to_previous_page: () => void;

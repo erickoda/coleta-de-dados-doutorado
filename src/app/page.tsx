@@ -8,6 +8,7 @@ import { PagesProvider } from "./context/pages";
 import PageRenderer from "./components/Pages";
 import Layout from "./components/Global/Layout";
 import { AnswersProvider } from "./context/answers";
+import ProgressBar from "./components/ProgressBar";
 
 const darkTheme = createTheme({
   palette: {
@@ -23,6 +24,7 @@ export default function Home() {
           <AnswersProvider>
             <CssBaseline />
             <Layout>
+              <ProgressBar />
               <PageRenderer />
             </Layout>
           </AnswersProvider>

@@ -25,6 +25,8 @@ function PagesProvider({ children }: PagesProviderProps) {
     <Instructions key={"instructions"} />,
   ]);
 
+  const conclusion_percentage = (100 * actual_page_index) / pagesQueue.length;
+
   const go_to_next_page = () => {
     if (actual_page_index < pagesQueue.length - 1) {
       set_actual_page_index(actual_page_index + 1);
@@ -86,6 +88,7 @@ function PagesProvider({ children }: PagesProviderProps) {
     <PagesContext.Provider
       value={{
         actual_page,
+        conclusion_percentage,
         actual_page_index,
         go_to_next_page,
         go_to_previous_page,
