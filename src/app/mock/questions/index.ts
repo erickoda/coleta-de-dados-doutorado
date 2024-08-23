@@ -1,4 +1,12 @@
-import { QuestionFuture, QuestionOtherPerson } from "@/app/types/questions";
+import { AnswerRole } from "@/app/types/questionAnswers";
+import {
+  FutureQuestion,
+  GenericQuestion,
+  OtherPersonQuestion,
+  QuestionFuture,
+  QuestionOtherPerson,
+} from "@/app/types/questions";
+import { isQuestionFuture } from "@/app/utils/questions";
 
 export type MockedQuestionT = {
   blocks: (QuestionFuture | QuestionOtherPerson)[][];
@@ -470,5 +478,49 @@ const MockedQuestions: MockedQuestionT = {
     ],
   ],
 };
+
+export const ParsedMockedQuestions: GenericQuestion[][] =
+  MockedQuestions.blocks.map((block) => {
+    return block.map((question) => {
+      if (isQuestionFuture(question)) {
+        return new GenericQuestion(
+          new FutureQuestion(
+            question,
+            AnswerRole.Immediate,
+            AnswerRole.LongTerm,
+            `${question.closest.value.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })} Hoje`,
+            `${question.furthest.value.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })} em ${question.furthest.days} dias`,
+            "Marque a Opção que preferir"
+          )
+        );
+      }
+
+      return new GenericQuestion(
+        new OtherPersonQuestion(
+          question,
+          AnswerRole.Reject,
+          AnswerRole.Accept,
+          "Recusar",
+          "Aceitar",
+          `${question.other_person_received_value.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })} para dividir com você. Ele lhe ofereceu ${question.other_person_offer.toLocaleString(
+            "pt-BR",
+            {
+              style: "currency",
+              currency: "BRL",
+            }
+          )}. Você recusa ou aceita a oferta?.`
+        )
+      );
+    });
+  });
 
 export default MockedQuestions;

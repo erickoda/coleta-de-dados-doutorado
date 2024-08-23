@@ -5,9 +5,10 @@ import PageContext, { PagesProviderProps } from "./types";
 import ConsentStatement from "@/app/components/Pages/ConsentStatement";
 import PersonalData from "@/app/components/Pages/PersonalData";
 import Instructions from "@/app/components/Pages/Instructions";
-import MockedQuestions from "@/app/mock/questions";
+import { ParsedMockedQuestions } from "@/app/mock/questions";
 import Question from "@/app/components/Pages/Question";
 import { isQuestionFuture } from "@/app/utils/questions";
+import { FutureQuestion } from "@/app/types/questions";
 import Result from "@/app/components/Pages/Result";
 
 const PagesContext = createContext<PageContext>({} as PageContext);
@@ -46,34 +47,21 @@ function PagesProvider({ children }: PagesProviderProps) {
 
     const questions: JSX.Element[] = [];
 
-    for (const block of MockedQuestions.blocks) {
+    for (const block of ParsedMockedQuestions) {
       for (const question of block) {
-        if (isQuestionFuture(question)) {
-          questions.push(<Question.StartStimulus key={question.id} />);
-          questions.push(
-            <Question.Future key={question.id} future_question={question} />
-          );
-          questions.push(
-            <Question.GuessTheTimeSpent
-              question_id={question.id}
-              key={question.id}
-            />
-          );
-
-          continue;
-        }
-
-        questions.push(<Question.StartStimulus key={question.id} />);
         questions.push(
-          <Question.OtherPerson
-            key={question.id}
-            other_person_question={question}
+          <Question.StartStimulus key={question.questionAnswer.question.id} />
+        );
+        questions.push(
+          <Question.GenericQuestion
+            key={question.questionAnswer.question.id}
+            questionAnswer={question.questionAnswer}
           />
         );
         questions.push(
           <Question.GuessTheTimeSpent
-            question_id={question.id}
-            key={question.id}
+            question_id={question.questionAnswer.question.id}
+            key={question.questionAnswer.question.id}
           />
         );
       }
