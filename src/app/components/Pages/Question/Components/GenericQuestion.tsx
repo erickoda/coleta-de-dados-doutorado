@@ -2,15 +2,15 @@ import Title from "@/app/components/Global/Title";
 import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
 import { AnswerRole } from "@/app/types/questionAnswers";
-import { QuestionAnswerI } from "@/app/types/questions";
+import { QuestionI } from "@/app/types/questions";
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 type GenericQuestionProps = {
-  questionAnswer: QuestionAnswerI;
+  question: QuestionI;
 };
 
-const GenericQuestion = ({ questionAnswer }: GenericQuestionProps) => {
+const GenericQuestion = ({ question }: GenericQuestionProps) => {
   const { go_to_next_page, go_to_previous_page } = usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
 
@@ -20,7 +20,7 @@ const GenericQuestion = ({ questionAnswer }: GenericQuestionProps) => {
 
   const getAnswer = () => {
     const answer = userAnswers.questions_answers.find(
-      (answer) => answer.question_id === questionAnswer.question.id
+      (answer) => answer.question_id === question.id
     )?.answer;
 
     return answer || AnswerRole.None;
@@ -51,40 +51,36 @@ const GenericQuestion = ({ questionAnswer }: GenericQuestionProps) => {
 
   return (
     <>
-      <Title>{questionAnswer.questionTitle}</Title>
+      <Title>{question.title}</Title>
       <div className="flex flex-row space-x-2 w-full">
         <Button
-          onClick={() =>
-            setUserAnswers(questionAnswer.answerFirstQuestion(userAnswers))
-          }
+          onClick={() => setUserAnswers(question.first.getAnswer(userAnswers))}
           fullWidth
           disabled={isDisabled}
           variant={
             userAnswers.questions_answers.find(
-              (answer) => answer.question_id === questionAnswer.question.id
-            )?.answer === questionAnswer.firstQuestionAnswer
+              (answer) => answer.question_id === question.id
+            )?.answer === question.first.answer
               ? "contained"
               : "outlined"
           }
         >
-          {questionAnswer.firstQuestionContent}
+          {question.first.content}
         </Button>
 
         <Button
-          onClick={() =>
-            setUserAnswers(questionAnswer.answerSecondQuestion(userAnswers))
-          }
+          onClick={() => setUserAnswers(question.second.getAnswer(userAnswers))}
           fullWidth
           disabled={isDisabled}
           variant={
             userAnswers.questions_answers.find(
-              (answer) => answer.question_id === questionAnswer.question.id
-            )?.answer === questionAnswer.secondQuestionAnswer
+              (answer) => answer.question_id === question.id
+            )?.answer === question.second.answer
               ? "contained"
               : "outlined"
           }
         >
-          {questionAnswer.secondQuestionContent}
+          {question.second.content}
         </Button>
       </div>
       <Button

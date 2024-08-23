@@ -1,16 +1,16 @@
-import { QuestionFuture, QuestionOtherPerson } from "../types/questions";
+import { FutureQuestionI, OtherPersonQuestionI } from "../types/questions";
 
 function isQuestionFuture(
-  value: QuestionFuture | QuestionOtherPerson
-): value is QuestionFuture {
-  return (value as QuestionFuture).closest !== undefined;
+  value: FutureQuestionI | OtherPersonQuestionI
+): value is FutureQuestionI {
+  return (value as FutureQuestionI).closest !== undefined;
 }
 
 function isQuestionOtherPerson(
-  value: QuestionFuture | QuestionOtherPerson
-): value is QuestionOtherPerson {
+  value: FutureQuestionI | OtherPersonQuestionI
+): value is OtherPersonQuestionI {
   return (
-    (value as QuestionOtherPerson).other_person_received_value !== undefined
+    (value as OtherPersonQuestionI).other_person_received_value !== undefined
   );
 }
 

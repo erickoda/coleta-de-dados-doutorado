@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import AnswersContextT, { ContextProviderProps } from "./types";
 import UserAnswers from "@/app/types/user/userAnswers";
 import Gender from "@/app/types/user/gender";
-import MockedQuestions from "@/app/mock/questions";
+import Questions from "@/app/mock/questions";
 import QuestionAnswer, { AnswerRole } from "@/app/types/questionAnswers";
 
 const AnswersContext = createContext<AnswersContextT>({} as AnswersContextT);
@@ -29,10 +29,10 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
       ...userAnswers,
       questions_answers: (() => {
         const questions_answers: QuestionAnswer[] = [];
-        for (const block of MockedQuestions.blocks) {
-          for (const question of block) {
+        for (const block of Questions) {
+          for (const generic_question of block) {
             questions_answers.push({
-              question_id: question.id,
+              question_id: generic_question.question.id,
               answer: AnswerRole.None,
               guessedTimeInMilliseconds: 0,
             });

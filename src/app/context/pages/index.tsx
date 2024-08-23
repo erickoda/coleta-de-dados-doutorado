@@ -5,9 +5,8 @@ import PageContext, { PagesProviderProps } from "./types";
 import ConsentStatement from "@/app/components/Pages/ConsentStatement";
 import PersonalData from "@/app/components/Pages/PersonalData";
 import Instructions from "@/app/components/Pages/Instructions";
-import { ParsedMockedQuestions } from "@/app/mock/questions";
+import Questions from "@/app/mock/questions";
 import Question from "@/app/components/Pages/Question";
-import Result from "@/app/components/Pages/Result";
 
 const PagesContext = createContext<PageContext>({} as PageContext);
 
@@ -45,27 +44,25 @@ function PagesProvider({ children }: PagesProviderProps) {
 
     const questions: JSX.Element[] = [];
 
-    for (const block of ParsedMockedQuestions) {
-      for (const question of block) {
+    for (const block of Questions) {
+      for (const generic_question of block) {
         questions.push(
-          <Question.StartStimulus key={question.questionAnswer.question.id} />
+          <Question.StartStimulus key={generic_question.question.id} />
         );
         questions.push(
           <Question.GenericQuestion
-            key={question.questionAnswer.question.id}
-            questionAnswer={question.questionAnswer}
+            key={generic_question.question.id}
+            question={generic_question.question}
           />
         );
         questions.push(
           <Question.GuessTheTimeSpent
-            question_id={question.questionAnswer.question.id}
-            key={question.questionAnswer.question.id}
+            question_id={generic_question.question.id}
+            key={generic_question.question.id}
           />
         );
       }
     }
-
-    questions.push(<Result key={"end"} />);
 
     setPagesQueue([...pagesQueue, ...questions]);
   }, []);
