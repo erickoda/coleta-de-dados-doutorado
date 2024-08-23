@@ -15,16 +15,27 @@ const Future = ({ future_question }: FutureProps) => {
   const { userAnswers, setUserAnswers } = useAnswers();
 
   const [isDisabled, setIsDisabled] = useState(true);
+  const [timeoutExpired, setTimeoutExpired] = useState(false);
   const [isAbleToGoToNextPage, setIsAbleToGoToNextPage] = useState(false);
+
+  const getAnswer = () => {
+    const answer = userAnswers.questions_answers.find(
+      (answer) => answer.question_id === future_question.id
+    )?.answer;
+
+    return answer || AnswerRole.None;
+  };
 
   useEffect(() => {
     const timeout_to_enable = setTimeout(() => setIsDisabled(false), 15000);
     const timeout_to_go_to_enable_next_page = setTimeout(() => {
-      userAnswers.questions_answers.find(
-        (answer) => answer.question_id === future_question.id
-      )?.answer === AnswerRole.None
-        ? go_to_previous_page()
-        : setIsAbleToGoToNextPage(true);
+      setTimeoutExpired(true);
+      // const answer = getAnswer();
+      // if (answer === AnswerRole.None) {
+      //   go_to_previous_page();
+      // } else {
+      //   setIsAbleToGoToNextPage(true);
+      // }
     }, 20000);
 
     return () => {
@@ -32,6 +43,17 @@ const Future = ({ future_question }: FutureProps) => {
       clearTimeout(timeout_to_go_to_enable_next_page);
     };
   }, []);
+
+  useEffect(() => {
+    if (!timeoutExpired) return;
+
+    const answer = getAnswer();
+    if (answer === AnswerRole.None && timeoutExpired) {
+      go_to_previous_page();
+    } else {
+      setIsAbleToGoToNextPage(true);
+    }
+  }, [timeoutExpired]);
 
   return (
     <>

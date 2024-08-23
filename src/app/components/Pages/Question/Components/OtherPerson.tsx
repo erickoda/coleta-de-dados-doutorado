@@ -15,6 +15,7 @@ const OtherPerson = ({ other_person_question }: OtherPersonProps) => {
   const { userAnswers, setUserAnswers } = useAnswers();
 
   const [isDisabled, setIsDisabled] = useState(true);
+  const [timeoutExpired, setTimeoutExpired] = useState(false);
   const [isAbleToGoToNextPage, setIsAbleToGoToNextPage] = useState(false);
 
   const getAnswer = () => {
@@ -28,12 +29,13 @@ const OtherPerson = ({ other_person_question }: OtherPersonProps) => {
   useEffect(() => {
     const timeout_to_enable = setTimeout(() => setIsDisabled(false), 15000);
     const timeout_to_go_to_enable_next_page = setTimeout(() => {
-      const answer = getAnswer();
-      if (answer === AnswerRole.None) {
-        go_to_previous_page();
-      } else {
-        setIsAbleToGoToNextPage(true);
-      }
+      setTimeoutExpired(true);
+      // const answer = getAnswer();
+      // if (answer === AnswerRole.None) {
+      //   go_to_previous_page();
+      // } else {
+      //   setIsAbleToGoToNextPage(true);
+      // }
     }, 20000);
 
     return () => {
@@ -41,6 +43,17 @@ const OtherPerson = ({ other_person_question }: OtherPersonProps) => {
       clearTimeout(timeout_to_go_to_enable_next_page);
     };
   }, []);
+
+  useEffect(() => {
+    if (!timeoutExpired) return;
+
+    const answer = getAnswer();
+    if (answer === AnswerRole.None && timeoutExpired) {
+      go_to_previous_page();
+    } else {
+      setIsAbleToGoToNextPage(true);
+    }
+  }, [timeoutExpired]);
 
   return (
     <>
