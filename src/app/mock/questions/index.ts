@@ -6,7 +6,7 @@ import {
   IntertemporalChoiceQuestionI,
   UltimatumGameQuestionI,
 } from "@/app/types/questions";
-import { isQuestionFuture } from "@/app/utils/questions";
+import { isIntertemporalChoiceQuestion } from "@/app/utils/questions";
 
 type MockedQuestionT = {
   blocks: (IntertemporalChoiceQuestionI | UltimatumGameQuestionI)[][];
@@ -481,7 +481,7 @@ const MockedQuestions: MockedQuestionT = {
 
 const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
   return block.map((question) => {
-    if (isQuestionFuture(question)) {
+    if (isIntertemporalChoiceQuestion(question)) {
       return new GenericQuestion(
         new IntertemporalChoice(
           question.id,
