@@ -17,14 +17,23 @@ const OtherPerson = ({ other_person_question }: OtherPersonProps) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isAbleToGoToNextPage, setIsAbleToGoToNextPage] = useState(false);
 
+  const getAnswer = () => {
+    const answer = userAnswers.questions_answers.find(
+      (answer) => answer.question_id === other_person_question.id
+    )?.answer;
+
+    return answer || AnswerRole.None;
+  };
+
   useEffect(() => {
     const timeout_to_enable = setTimeout(() => setIsDisabled(false), 15000);
     const timeout_to_go_to_enable_next_page = setTimeout(() => {
-      userAnswers.questions_answers.find(
-        (answer) => answer.question_id === other_person_question.id
-      )?.answer === AnswerRole.None
-        ? go_to_previous_page()
-        : setIsAbleToGoToNextPage(true);
+      const answer = getAnswer();
+      if (answer === AnswerRole.None) {
+        go_to_previous_page();
+      } else {
+        setIsAbleToGoToNextPage(true);
+      }
     }, 20000);
 
     return () => {
