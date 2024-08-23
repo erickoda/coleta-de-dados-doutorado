@@ -1,4 +1,4 @@
-enum AnswerRole {
+enum GenericAnswerRole {
   Immediate = "Imediata",
   LongTerm = "Longo Prazo",
 
@@ -8,11 +8,11 @@ enum AnswerRole {
   None = "None",
 }
 
-type QuestionAnswer = {
+type Answer = {
   question_id: number;
-  answer: AnswerRole;
+  answer: GenericAnswerRole;
   guessedTimeInMilliseconds: number;
 };
 
-export { AnswerRole };
-export default QuestionAnswer;
+export { GenericAnswerRole };
+export default Answer;

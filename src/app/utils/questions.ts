@@ -1,7 +1,7 @@
 import {
   IntertemporalChoiceQuestionI,
   UltimatumGameQuestionI,
-} from "../types/questions";
+} from "../types/question/generic_questions";
 
 function isIntertemporalChoiceQuestion(
   value: IntertemporalChoiceQuestionI | UltimatumGameQuestionI

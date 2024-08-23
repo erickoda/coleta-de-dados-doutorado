@@ -1,11 +1,11 @@
-import { AnswerRole } from "@/app/types/questionAnswers";
+import { GenericAnswerRole } from "@/app/types/question/generic_answers";
 import {
   IntertemporalChoice,
   GenericQuestion,
   UltimatumGameQuestion,
   IntertemporalChoiceQuestionI,
   UltimatumGameQuestionI,
-} from "@/app/types/questions";
+} from "@/app/types/question/generic_questions";
 import { isIntertemporalChoiceQuestion } from "@/app/utils/questions";
 
 type MockedQuestionT = {
@@ -485,8 +485,8 @@ const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
       return new GenericQuestion(
         new IntertemporalChoice(
           question.id,
-          AnswerRole.Immediate,
-          AnswerRole.LongTerm,
+          GenericAnswerRole.Immediate,
+          GenericAnswerRole.LongTerm,
           `${question.closest.value.toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
@@ -503,8 +503,8 @@ const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
     return new GenericQuestion(
       new UltimatumGameQuestion(
         question,
-        AnswerRole.Reject,
-        AnswerRole.Accept,
+        GenericAnswerRole.Reject,
+        GenericAnswerRole.Accept,
         "Recusar",
         "Aceitar",
         `${question.other_person_received_value.toLocaleString("pt-BR", {

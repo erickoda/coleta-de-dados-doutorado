@@ -1,5 +1,5 @@
-import { AnswerRole } from "./questionAnswers";
-import UserAnswers from "./user/userAnswers";
+import { GenericAnswerRole } from "./generic_answers";
+import UserAnswers from "../user/userAnswers";
 
 export type IntertemporalChoiceQuestionI = {
   id: number;
@@ -23,12 +23,12 @@ export interface QuestionI {
   id: number;
   title: string;
   first: {
-    answer: AnswerRole;
+    answer: GenericAnswerRole;
     content: string;
     getAnswer(userAnswers: UserAnswers): UserAnswers;
   };
   second: {
-    answer: AnswerRole;
+    answer: GenericAnswerRole;
     content: string;
     getAnswer(userAnswers: UserAnswers): UserAnswers;
   };
@@ -37,20 +37,20 @@ export interface QuestionI {
 export class IntertemporalChoice implements QuestionI {
   id: number;
   first: {
-    answer: AnswerRole;
+    answer: GenericAnswerRole;
     content: string;
     getAnswer(userAnswers: UserAnswers): UserAnswers;
   };
   second: {
-    answer: AnswerRole;
+    answer: GenericAnswerRole;
     content: string;
     getAnswer(userAnswers: UserAnswers): UserAnswers;
   };
   title: string;
   constructor(
     id: number,
-    firstAnswer: AnswerRole,
-    secondAnswer: AnswerRole,
+    firstAnswer: GenericAnswerRole,
+    secondAnswer: GenericAnswerRole,
     firstContent: string,
     secondContent: string,
     title: string
@@ -97,12 +97,12 @@ export class IntertemporalChoice implements QuestionI {
 export class UltimatumGameQuestion implements QuestionI {
   id: number;
   first: {
-    answer: AnswerRole;
+    answer: GenericAnswerRole;
     content: string;
     getAnswer(userAnswers: UserAnswers): UserAnswers;
   };
   second: {
-    answer: AnswerRole;
+    answer: GenericAnswerRole;
     content: string;
     getAnswer(userAnswers: UserAnswers): UserAnswers;
   };
@@ -110,8 +110,8 @@ export class UltimatumGameQuestion implements QuestionI {
 
   constructor(
     question: UltimatumGameQuestionI,
-    firstQuestionAnswer: AnswerRole,
-    secondQuestionAnswer: AnswerRole,
+    firstQuestionAnswer: GenericAnswerRole,
+    secondQuestionAnswer: GenericAnswerRole,
     firstQuestionContent: string,
     secondQuestionContent: string,
     title: string

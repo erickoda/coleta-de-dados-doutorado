@@ -1,7 +1,7 @@
 enum Devices {
   Mobile = "Mobile",
   Tablet = "Tablet",
-  Desktop = "Desktop",
+  DesktopOrLaptop = "Desktop Or Laptop",
   Other = "Other",
 }
 

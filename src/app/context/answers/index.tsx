@@ -3,7 +3,9 @@ import AnswersContextT, { ContextProviderProps } from "./types";
 import UserAnswers from "@/app/types/user/userAnswers";
 import Gender from "@/app/types/user/gender";
 import Questions from "@/app/mock/questions";
-import QuestionAnswer, { AnswerRole } from "@/app/types/questionAnswers";
+import Answer, {
+  GenericAnswerRole,
+} from "@/app/types/question/generic_answers";
 
 const AnswersContext = createContext<AnswersContextT>({} as AnswersContextT);
 
@@ -22,18 +24,27 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
       device: "",
     },
     questions_answers: [],
+    final_questions: {
+      relaxed_level: null,
+      salary: null,
+      quantity_of_dependents: null,
+      have_enough_income: null,
+      have_answered_with_attention: null,
+      have_something_disturbed_you: null,
+      something_to_add: null,
+    },
   });
 
   useEffect(() => {
     setUserAnswers({
       ...userAnswers,
       questions_answers: (() => {
-        const questions_answers: QuestionAnswer[] = [];
+        const questions_answers: Answer[] = [];
         for (const block of Questions) {
           for (const generic_question of block) {
             questions_answers.push({
               question_id: generic_question.question.id,
-              answer: AnswerRole.None,
+              answer: GenericAnswerRole.None,
               guessedTimeInMilliseconds: 0,
             });
           }

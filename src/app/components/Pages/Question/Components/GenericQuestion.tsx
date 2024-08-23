@@ -1,8 +1,8 @@
 import Title from "@/app/components/Global/Title";
 import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
-import { AnswerRole } from "@/app/types/questionAnswers";
-import { QuestionI } from "@/app/types/questions";
+import { GenericAnswerRole } from "@/app/types/question/generic_answers";
+import { QuestionI } from "@/app/types/question/generic_questions";
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
@@ -23,7 +23,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
       (answer) => answer.question_id === question.id
     )?.answer;
 
-    return answer || AnswerRole.None;
+    return answer || GenericAnswerRole.None;
   };
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
     if (!timeoutExpired) return;
 
     const answer = getAnswer();
-    if (answer === AnswerRole.None && timeoutExpired) {
+    if (answer === GenericAnswerRole.None && timeoutExpired) {
       go_to_previous_page();
     } else {
       setIsAbleToGoToNextPage(true);

@@ -13,7 +13,7 @@ import {
   TextField,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-import Devices from "@/app/types/device";
+import Devices from "@/app/types/user/device";
 import { usePages } from "@/app/context/pages";
 import { useAnswers } from "@/app/context/answers";
 
