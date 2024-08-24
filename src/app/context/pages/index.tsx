@@ -7,6 +7,7 @@ import PersonalData from "@/app/components/Pages/PersonalData";
 import Instructions from "@/app/components/Pages/Instructions";
 import Questions from "@/app/mock/questions";
 import Question from "@/app/components/Pages/Question";
+import Final from "@/app/components/Pages/Final";
 
 const PagesContext = createContext<PageContext>({} as PageContext);
 
@@ -19,8 +20,9 @@ function PagesProvider({ children }: PagesProviderProps) {
 
   const [pagesQueue, setPagesQueue] = useState<JSX.Element[]>([
     <ConsentStatement key={"consent statement"} />,
-    <PersonalData key={"persona data"} />,
-    <Instructions key={"instructions"} />,
+    <Final key="final data" />,
+    // <PersonalData key={"persona data"} />,
+    // <Instructions key={"instructions"} />,
   ]);
 
   const conclusion_percentage = (100 * actual_page_index) / pagesQueue.length;
@@ -64,7 +66,7 @@ function PagesProvider({ children }: PagesProviderProps) {
       }
     }
 
-    setPagesQueue([...pagesQueue, ...questions]);
+    // setPagesQueue([...pagesQueue, ...questions]);
   }, []);
 
   return (
