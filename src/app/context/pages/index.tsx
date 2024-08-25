@@ -20,9 +20,9 @@ function PagesProvider({ children }: PagesProviderProps) {
 
   const [pagesQueue, setPagesQueue] = useState<JSX.Element[]>([
     <ConsentStatement key={"consent statement"} />,
-    <Final key="final data" />,
-    // <PersonalData key={"persona data"} />,
-    // <Instructions key={"instructions"} />,
+    <PersonalData key={"persona data"} />,
+    <Instructions key={"instructions"} />,
+    <Question.Test key={"Test"} />,
   ]);
 
   const conclusion_percentage = (100 * actual_page_index) / pagesQueue.length;
@@ -42,10 +42,11 @@ function PagesProvider({ children }: PagesProviderProps) {
   };
 
   useEffect(() => {
-    if (pagesQueue.length > 3) return;
+    if (pagesQueue.length > 4) return;
 
     const questions: JSX.Element[] = [];
 
+    let hasAddedStart = false;
     for (const block of Questions) {
       for (const generic_question of block) {
         questions.push(
@@ -63,10 +64,15 @@ function PagesProvider({ children }: PagesProviderProps) {
             key={generic_question.question.id}
           />
         );
+
+        if (!hasAddedStart) {
+          questions.push(<Question.Start key={"start"} />);
+          hasAddedStart = true;
+        }
       }
     }
 
-    // setPagesQueue([...pagesQueue, ...questions]);
+    setPagesQueue([...pagesQueue, ...questions, <Final key={"final"} />]);
   }, []);
 
   return (
