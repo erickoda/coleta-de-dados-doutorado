@@ -88,7 +88,7 @@ const MockedQuestions: MockedQuestionT = {
         other_person_offer: 50,
       },
       {
-        id: 7,
+        id: 9,
         closest: {
           value: 47,
           days: 0,
@@ -99,7 +99,7 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 8,
+        id: 10,
         closest: {
           value: 80,
           days: 0,
@@ -110,24 +110,24 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 9,
+        id: 11,
         other_person_received_value: 150,
         other_person_offer: 75,
       },
     ],
     [
       {
-        id: 10,
+        id: 12,
         other_person_received_value: 50,
         other_person_offer: 20,
       },
       {
-        id: 11,
+        id: 13,
         other_person_received_value: 100,
         other_person_offer: 40,
       },
       {
-        id: 12,
+        id: 14,
         closest: {
           value: 22,
           days: 0,
@@ -138,17 +138,17 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 13,
+        id: 15,
         other_person_received_value: 150,
         other_person_offer: 60,
       },
       {
-        id: 14,
+        id: 16,
         other_person_received_value: 50,
         other_person_offer: 15,
       },
       {
-        id: 15,
+        id: 17,
         closest: {
           value: 54,
           days: 0,
@@ -159,17 +159,17 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 16,
+        id: 18,
         other_person_received_value: 100,
         other_person_offer: 30,
       },
       {
-        id: 17,
+        id: 19,
         other_person_received_value: 150,
         other_person_offer: 45,
       },
       {
-        id: 18,
+        id: 20,
         closest: {
           value: 67,
           days: 0,
@@ -182,7 +182,7 @@ const MockedQuestions: MockedQuestionT = {
     ],
     [
       {
-        id: 19,
+        id: 21,
         closest: {
           value: 25,
           days: 0,
@@ -193,7 +193,7 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 20,
+        id: 22,
         closest: {
           value: 49,
           days: 0,
@@ -204,12 +204,12 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 21,
+        id: 23,
         other_person_received_value: 50,
         other_person_offer: 10,
       },
       {
-        id: 22,
+        id: 24,
         closest: {
           value: 69,
           days: 0,
@@ -220,7 +220,7 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 23,
+        id: 25,
         closest: {
           value: 19,
           days: 0,
@@ -231,12 +231,12 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 24,
+        id: 26,
         other_person_received_value: 100,
         other_person_offer: 20,
       },
       {
-        id: 25,
+        id: 27,
         closest: {
           value: 40,
           days: 0,
@@ -247,7 +247,7 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 26,
+        id: 28,
         closest: {
           value: 55,
           days: 0,
@@ -258,24 +258,24 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 27,
+        id: 29,
         other_person_received_value: 150,
         other_person_offer: 30,
       },
     ],
     [
       {
-        id: 28,
+        id: 30,
         other_person_received_value: 50,
         other_person_offer: 7.5,
       },
       {
-        id: 29,
+        id: 31,
         other_person_received_value: 100,
         other_person_offer: 15,
       },
       {
-        id: 30,
+        id: 32,
         closest: {
           value: 24,
           days: 0,
@@ -286,17 +286,17 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 31,
+        id: 33,
         other_person_received_value: 150,
         other_person_offer: 22.5,
       },
       {
-        id: 32,
+        id: 34,
         other_person_received_value: 50,
         other_person_offer: 5,
       },
       {
-        id: 33,
+        id: 35,
         closest: {
           value: 34,
           days: 0,
@@ -307,17 +307,17 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 34,
+        id: 36,
         other_person_received_value: 100,
         other_person_offer: 10,
       },
       {
-        id: 35,
+        id: 37,
         other_person_received_value: 150,
         other_person_offer: 15,
       },
       {
-        id: 36,
+        id: 38,
         closest: {
           value: 54,
           days: 0,
@@ -330,7 +330,7 @@ const MockedQuestions: MockedQuestionT = {
     ],
     [
       {
-        id: 37,
+        id: 39,
         closest: {
           value: 14,
           days: 0,
@@ -341,7 +341,7 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 38,
+        id: 40,
         closest: {
           value: 27,
           days: 0,
@@ -352,12 +352,12 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 39,
+        id: 41,
         other_person_received_value: 50,
         other_person_offer: 4,
       },
       {
-        id: 40,
+        id: 42,
         closest: {
           value: 41,
           days: 0,
@@ -368,7 +368,7 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 41,
+        id: 43,
         closest: {
           value: 15,
           days: 0,
@@ -379,12 +379,12 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 42,
+        id: 44,
         other_person_received_value: 100,
         other_person_offer: 8,
       },
       {
-        id: 43,
+        id: 45,
         closest: {
           value: 25,
           days: 0,
@@ -395,7 +395,7 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 44,
+        id: 46,
         closest: {
           value: 33,
           days: 0,
@@ -406,24 +406,24 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 45,
+        id: 47,
         other_person_received_value: 150,
         other_person_offer: 12,
       },
     ],
     [
       {
-        id: 46,
+        id: 48,
         other_person_received_value: 50,
         other_person_offer: 2.5,
       },
       {
-        id: 47,
+        id: 49,
         other_person_received_value: 100,
         other_person_offer: 5,
       },
       {
-        id: 48,
+        id: 50,
         closest: {
           value: 11,
           days: 0,
@@ -434,17 +434,17 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 49,
+        id: 51,
         other_person_received_value: 150,
         other_person_offer: 7.5,
       },
       {
-        id: 50,
+        id: 52,
         other_person_received_value: 50,
         other_person_offer: 1.5,
       },
       {
-        id: 51,
+        id: 53,
         closest: {
           value: 20,
           days: 0,
@@ -455,17 +455,17 @@ const MockedQuestions: MockedQuestionT = {
         },
       },
       {
-        id: 52,
+        id: 54,
         other_person_received_value: 100,
         other_person_offer: 3,
       },
       {
-        id: 53,
+        id: 55,
         other_person_received_value: 150,
         other_person_offer: 4.5,
       },
       {
-        id: 54,
+        id: 56,
         closest: {
           value: 31,
           days: 0,
