@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Title from "../../Global/Title";
 import Paragraph from "../../Global/Paragraph";
 import {
@@ -16,9 +16,31 @@ import {
 import { useAnswers } from "@/app/context/answers";
 import NumberInput from "../../Global/NumberInput";
 import canBeConvertedToInteger from "@/app/types/user/canBeConvertedToInteger";
+import { usePages } from "@/app/context/pages";
 
 const Final = () => {
   const { userAnswers, setUserAnswers } = useAnswers();
+
+  useEffect(() => {
+    setUserAnswers({
+      ...userAnswers,
+      time_spent: userAnswers.time_spent.map((time, index) => {
+        if (
+          userAnswers.time_spent[userAnswers.time_spent.length - 1].final !== 0
+        )
+          return time;
+
+        if (index === userAnswers.time_spent.length - 1) {
+          return {
+            initial: time.initial,
+            final: performance.now(),
+          };
+        }
+
+        return time;
+      }),
+    });
+  }, []);
 
   return (
     <>

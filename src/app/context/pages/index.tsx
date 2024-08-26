@@ -46,9 +46,10 @@ function PagesProvider({ children }: PagesProviderProps) {
 
     const questions: JSX.Element[] = [];
 
-    let hasAddedStart = false;
+    let quantity_of_questions = 0;
     for (const block of Questions) {
       for (const generic_question of block) {
+        quantity_of_questions += 1;
         questions.push(
           <Question.StartStimulus key={generic_question.question.id} />
         );
@@ -65,15 +66,16 @@ function PagesProvider({ children }: PagesProviderProps) {
           />
         );
 
-        if (!hasAddedStart) {
+        if (quantity_of_questions === 2) {
           questions.push(<Question.Start key={"start"} />);
-          hasAddedStart = true;
         }
       }
     }
 
     setPagesQueue([...pagesQueue, ...questions, <Final key={"final"} />]);
   }, []);
+
+  console.log(pagesQueue.length);
 
   return (
     <PagesContext.Provider

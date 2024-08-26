@@ -495,7 +495,7 @@ const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
             style: "currency",
             currency: "BRL",
           })} em ${question.furthest.days} dias`,
-          "Marque a Opção que preferir"
+          "Marque a Opção que preferir ${question.id}"
         )
       );
     }
@@ -516,7 +516,7 @@ const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
             style: "currency",
             currency: "BRL",
           }
-        )}. Você recusa ou aceita a oferta?.`
+        )}. Você recusa ou aceita a oferta?. ${question.id}`
       )
     );
   });

@@ -33,6 +33,7 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
       have_something_disturbed_you: null,
       something_to_add: null,
     },
+    time_spent: [],
   });
 
   useEffect(() => {
@@ -50,6 +51,23 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
           }
         }
         return questions_answers;
+      })(),
+      time_spent: (() => {
+        const time_spent = [];
+        let isTestBlock = true;
+        for (const block of Questions) {
+          for (const generic_question of block) {
+            if (isTestBlock) {
+              isTestBlock = false;
+              continue;
+            }
+            time_spent.push({
+              initial: 0,
+              final: 0,
+            });
+          }
+        }
+        return time_spent;
       })(),
     });
   }, []);

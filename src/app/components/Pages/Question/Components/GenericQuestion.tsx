@@ -27,10 +27,10 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
   };
 
   useEffect(() => {
-    const timeout_to_enable = setTimeout(() => setIsDisabled(false), 15000);
+    const timeout_to_enable = setTimeout(() => setIsDisabled(false), 1);
     const timeout_to_go_to_enable_next_page = setTimeout(() => {
       setTimeoutExpired(true);
-    }, 20000);
+    }, 2000);
 
     return () => {
       clearTimeout(timeout_to_enable);
