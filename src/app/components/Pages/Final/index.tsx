@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Title from "../../Global/Title";
 import Paragraph from "../../Global/Paragraph";
 import {
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -16,7 +17,7 @@ import {
 import { useAnswers } from "@/app/context/answers";
 import NumberInput from "../../Global/NumberInput";
 import canBeConvertedToInteger from "@/app/types/user/canBeConvertedToInteger";
-import { usePages } from "@/app/context/pages";
+import axios from "axios";
 
 const Final = () => {
   const { userAnswers, setUserAnswers } = useAnswers();
@@ -41,6 +42,9 @@ const Final = () => {
       }),
     });
   }, []);
+
+  console.log("userAnswers");
+  console.log(userAnswers);
 
   return (
     <>
@@ -71,7 +75,8 @@ const Final = () => {
                 ...userAnswers,
                 final_questions: {
                   ...userAnswers.final_questions,
-                  relaxed_level: e.target.value as RelaxedScale,
+                  relaxed_level:
+                    RelaxedScale[e.target.value as keyof typeof RelaxedScale],
                 },
               })
             }
@@ -99,7 +104,7 @@ const Final = () => {
                 ...userAnswers,
                 final_questions: {
                   ...userAnswers.final_questions,
-                  salary: e.target.value as MinSalary,
+                  salary: MinSalary[e.target.value as keyof typeof MinSalary],
                 },
               })
             }
@@ -160,7 +165,10 @@ const Final = () => {
                 ...userAnswers,
                 final_questions: {
                   ...userAnswers.final_questions,
-                  have_enough_income: e.target.value as DichotomousAnswer,
+                  have_enough_income:
+                    DichotomousAnswer[
+                      e.target.value as keyof typeof DichotomousAnswer
+                    ],
                 },
               })
             }
@@ -188,8 +196,10 @@ const Final = () => {
                 ...userAnswers,
                 final_questions: {
                   ...userAnswers.final_questions,
-                  have_answered_with_attention: e.target
-                    .value as DichotomousAnswer,
+                  have_answered_with_attention:
+                    DichotomousAnswer[
+                      e.target.value as keyof typeof DichotomousAnswer
+                    ],
                 },
               })
             }
@@ -218,8 +228,10 @@ const Final = () => {
                 ...userAnswers,
                 final_questions: {
                   ...userAnswers.final_questions,
-                  have_something_disturbed_you: e.target
-                    .value as DichotomousAnswer,
+                  have_something_disturbed_you:
+                    DichotomousAnswer[
+                      e.target.value as keyof typeof DichotomousAnswer
+                    ],
                 },
               })
             }
@@ -250,6 +262,36 @@ const Final = () => {
             }}
           />
         </div>
+      </div>
+
+      <div className="flex flex-row justify-center items-center w-full">
+        <Button
+          variant="contained"
+          onClick={() => {
+            axios.post(`${process.env.API_KEY}`, {
+              ...userAnswers,
+              personal_information: {
+                ...userAnswers.personal_information,
+                birth_date:
+                  userAnswers.personal_information.birth_date?.toISOString(),
+              },
+              questions_answers: userAnswers.questions_answers.map(
+                (question) => ({
+                  ...question,
+                  user_email: userAnswers.consent_statement.email,
+                })
+              ),
+              time_spent: userAnswers.time_spent.map((time, index) => {
+                const bloco = `bloco_${index + 1}`;
+                return {
+                  [bloco]: time.final - time.initial,
+                };
+              }),
+            });
+          }}
+        >
+          Finalizar!
+        </Button>
       </div>
     </>
   );
