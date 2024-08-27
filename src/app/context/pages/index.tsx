@@ -75,8 +75,6 @@ function PagesProvider({ children }: PagesProviderProps) {
     setPagesQueue([...pagesQueue, ...questions, <Final key={"final"} />]);
   }, []);
 
-  console.log(pagesQueue.length);
-
   return (
     <PagesContext.Provider
       value={{
