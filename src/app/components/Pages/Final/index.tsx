@@ -18,6 +18,8 @@ import { useAnswers } from "@/app/context/answers";
 import NumberInput from "../../Global/NumberInput";
 import canBeConvertedToInteger from "@/app/types/user/canBeConvertedToInteger";
 import axios from "axios";
+import UserAnswers from "@/app/types/user/userAnswers";
+import { ParsedAnswers } from "@/app/types/user/parsed_answer";
 
 const Final = () => {
   const { userAnswers, setUserAnswers } = useAnswers();
@@ -268,6 +270,21 @@ const Final = () => {
         <Button
           variant="contained"
           onClick={() => {
+            const questions_answers = (() => {
+              const questions_answers: ParsedAnswers[] = [];
+
+              userAnswers.questions_answers.forEach((answer, index) => {
+                if (index > 1) {
+                  questions_answers.push({
+                    ...answer,
+                    user_email: userAnswers.consent_statement.email,
+                  });
+                }
+              });
+
+              return questions_answers;
+            })();
+
             axios.post(`${process.env.NEXT_PUBLIC_DEVELOPMENT_API_URL}`, {
               ...userAnswers,
               personal_information: {
@@ -275,12 +292,7 @@ const Final = () => {
                 birth_date:
                   userAnswers.personal_information.birth_date?.toISOString(),
               },
-              questions_answers: userAnswers.questions_answers.map(
-                (question) => ({
-                  ...question,
-                  user_email: userAnswers.consent_statement.email,
-                })
-              ),
+              questions_answers: questions_answers,
               time_spent: userAnswers.time_spent.map((time, index) => {
                 const bloco = `bloco_${index + 1}`;
                 return {
