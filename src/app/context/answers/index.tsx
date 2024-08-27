@@ -54,18 +54,11 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
       })(),
       time_spent: (() => {
         const time_spent = [];
-        let isTestBlock = true;
-        for (const block of Questions) {
-          for (const generic_question of block) {
-            if (isTestBlock) {
-              isTestBlock = false;
-              continue;
-            }
-            time_spent.push({
-              initial: 0,
-              final: 0,
-            });
-          }
+        for (let i = 0; i < 6; i++) {
+          time_spent.push({
+            initial: 0,
+            final: 0,
+          });
         }
         return time_spent;
       })(),

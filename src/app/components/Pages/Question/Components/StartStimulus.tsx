@@ -5,14 +5,6 @@ import { usePages } from "@/app/context/pages";
 import { Button } from "@mui/material";
 import React, { useEffect } from "react";
 
-/**
- *
- *  8 => Times Start
- *  .. 9*5 + 8 => Times End And Restart
- *  .. 9*5*2 + 8 => Times End And Restart
- *
- */
-
 const StartStimulus = () => {
   const { go_to_next_page, actual_page_index } = usePages();
   const { userAnswers, setUserAnswers } = useAnswers();

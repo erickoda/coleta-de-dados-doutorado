@@ -20,6 +20,7 @@ import canBeConvertedToInteger from "@/app/types/user/canBeConvertedToInteger";
 import axios from "axios";
 import UserAnswers from "@/app/types/user/userAnswers";
 import { ParsedAnswers } from "@/app/types/user/parsed_answer";
+import Questions from "@/app/mock/questions";
 
 const Final = () => {
   const { userAnswers, setUserAnswers } = useAnswers();
@@ -274,13 +275,25 @@ const Final = () => {
           disabled={isSendingData}
           onClick={() => {
             setIsSendingData(true);
+
             const questions_answers = (() => {
               const questions_answers: ParsedAnswers[] = [];
 
               userAnswers.questions_answers.forEach((answer, index) => {
+                const question = (() => {
+                  for (const block of Questions) {
+                    for (const question of block) {
+                      if (question.question.id === answer.question_id) {
+                        return question.question;
+                      }
+                    }
+                  }
+                })();
+
                 if (index > 1) {
                   questions_answers.push({
                     ...answer,
+                    question: `${question?.title} ${question?.first.content} ; ${question?.second.content}`,
                     user_email: userAnswers.consent_statement.email,
                   });
                 }
@@ -291,8 +304,8 @@ const Final = () => {
 
             const time_spent = (() => {
               const parsed_time_spent: { [key: string]: number } = {};
-              for (let i = 1; i <= userAnswers.time_spent.length; i++) {
-                const block: string = `bloco_${i}`;
+              for (let i = 0; i < userAnswers.time_spent.length; i++) {
+                const block: string = `bloco_${i + 1}`;
                 parsed_time_spent[block] =
                   userAnswers.time_spent[i].final -
                   userAnswers.time_spent[i].initial;
@@ -311,7 +324,8 @@ const Final = () => {
                 questions_answers: questions_answers,
                 time_spent: time_spent,
               })
-              .catch(() => setIsSendingData(false));
+              .catch(() => setIsSendingData(false))
+              .finally(() => setIsSendingData(false));
           }}
         >
           Finalizar!

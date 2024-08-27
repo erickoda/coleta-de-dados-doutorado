@@ -8,6 +8,7 @@ import Instructions from "@/app/components/Pages/Instructions";
 import Questions from "@/app/mock/questions";
 import Question from "@/app/components/Pages/Question";
 import Final from "@/app/components/Pages/Final";
+import Greet from "@/app/components/Pages/Greet";
 
 const PagesContext = createContext<PageContext>({} as PageContext);
 
@@ -72,7 +73,12 @@ function PagesProvider({ children }: PagesProviderProps) {
       }
     }
 
-    setPagesQueue([...pagesQueue, ...questions, <Final key={"final"} />]);
+    setPagesQueue([
+      ...pagesQueue,
+      ...questions,
+      <Final key={"final"} />,
+      <Greet key="greet" />,
+    ]);
   }, []);
 
   return (

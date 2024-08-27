@@ -45,6 +45,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
     if (answer === GenericAnswerRole.None && timeoutExpired) {
       go_to_previous_page();
     } else {
+      setIsDisabled(true);
       setIsAbleToGoToNextPage(true);
     }
   }, [timeoutExpired]);
