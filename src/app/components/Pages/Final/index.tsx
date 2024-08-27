@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../Global/Title";
 import Paragraph from "../../Global/Paragraph";
 import {
@@ -23,6 +23,8 @@ import { ParsedAnswers } from "@/app/types/user/parsed_answer";
 
 const Final = () => {
   const { userAnswers, setUserAnswers } = useAnswers();
+
+  const [isSendingData, setIsSendingData] = useState<boolean>(false);
 
   useEffect(() => {
     setUserAnswers({
@@ -269,7 +271,9 @@ const Final = () => {
       <div className="flex flex-row justify-center items-center w-full">
         <Button
           variant="contained"
+          disabled={isSendingData}
           onClick={() => {
+            setIsSendingData(true);
             const questions_answers = (() => {
               const questions_answers: ParsedAnswers[] = [];
 
@@ -285,21 +289,29 @@ const Final = () => {
               return questions_answers;
             })();
 
-            axios.post(`${process.env.NEXT_PUBLIC_DEVELOPMENT_API_URL}`, {
-              ...userAnswers,
-              personal_information: {
-                ...userAnswers.personal_information,
-                birth_date:
-                  userAnswers.personal_information.birth_date?.toISOString(),
-              },
-              questions_answers: questions_answers,
-              time_spent: userAnswers.time_spent.map((time, index) => {
-                const bloco = `bloco_${index + 1}`;
-                return {
-                  [bloco]: time.final - time.initial,
-                };
-              }),
-            });
+            const time_spent = (() => {
+              const parsed_time_spent: { [key: string]: number } = {};
+              for (let i = 1; i <= userAnswers.time_spent.length; i++) {
+                const block: string = `bloco_${i}`;
+                parsed_time_spent[block] =
+                  userAnswers.time_spent[i].final -
+                  userAnswers.time_spent[i].initial;
+              }
+              return parsed_time_spent;
+            })();
+
+            axios
+              .post(`${process.env.NEXT_PUBLIC_DEVELOPMENT_API_URL}`, {
+                ...userAnswers,
+                personal_information: {
+                  ...userAnswers.personal_information,
+                  birth_date:
+                    userAnswers.personal_information.birth_date?.toISOString(),
+                },
+                questions_answers: questions_answers,
+                time_spent: time_spent,
+              })
+              .catch(() => setIsSendingData(false));
           }}
         >
           Finalizar!
