@@ -21,9 +21,11 @@ import axios from "axios";
 import UserAnswers from "@/app/types/user/userAnswers";
 import { ParsedAnswers } from "@/app/types/user/parsed_answer";
 import Questions from "@/app/mock/questions";
+import { usePages } from "@/app/context/pages";
 
 const Final = () => {
   const { userAnswers, setUserAnswers } = useAnswers();
+  const { go_to_next_page } = usePages();
 
   const [isSendingData, setIsSendingData] = useState<boolean>(false);
 
@@ -47,9 +49,6 @@ const Final = () => {
       }),
     });
   }, []);
-
-  console.log("userAnswers");
-  console.log(userAnswers);
 
   return (
     <>
@@ -324,7 +323,13 @@ const Final = () => {
                 questions_answers: questions_answers,
                 time_spent: time_spent,
               })
-              .catch(() => setIsSendingData(false))
+              .then(() => {
+                go_to_next_page();
+              })
+              .catch(() => {
+                setIsSendingData(false);
+                alert("Erro ao enviar dados, tente novamente!");
+              })
               .finally(() => setIsSendingData(false));
           }}
         >
