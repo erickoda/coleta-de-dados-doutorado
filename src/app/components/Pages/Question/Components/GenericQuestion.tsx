@@ -44,6 +44,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
     const answer = getAnswer();
     if (answer === GenericAnswerRole.None && timeoutExpired) {
       go_to_previous_page();
+      alert("Você precisa responder a pergunta dentro do prazo estipulado!");
     } else {
       setIsDisabled(true);
       setIsAbleToGoToNextPage(true);
