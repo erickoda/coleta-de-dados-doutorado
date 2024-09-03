@@ -11,6 +11,7 @@ export type IntertemporalChoiceQuestionI = {
     value: number;
     days: number;
   };
+  discount_rate: string;
 };
 
 export type UltimatumGameQuestionI = {
@@ -22,6 +23,7 @@ export type UltimatumGameQuestionI = {
 export interface QuestionI {
   id: number;
   title: string;
+  discount_rate: string;
   first: {
     answer: GenericAnswerRole;
     content: string;
@@ -47,13 +49,15 @@ export class IntertemporalChoice implements QuestionI {
     getAnswer(userAnswers: UserAnswers): UserAnswers;
   };
   title: string;
+  discount_rate: string;
   constructor(
     id: number,
     firstAnswer: GenericAnswerRole,
     secondAnswer: GenericAnswerRole,
     firstContent: string,
     secondContent: string,
-    title: string
+    title: string,
+    discount_rate: string
   ) {
     this.id = id;
     this.title = title;
@@ -91,6 +95,7 @@ export class IntertemporalChoice implements QuestionI {
         };
       },
     };
+    this.discount_rate = discount_rate;
   }
 }
 
@@ -107,14 +112,15 @@ export class UltimatumGameQuestion implements QuestionI {
     getAnswer(userAnswers: UserAnswers): UserAnswers;
   };
   title: string;
-
+  discount_rate: string;
   constructor(
     question: UltimatumGameQuestionI,
     firstQuestionAnswer: GenericAnswerRole,
     secondQuestionAnswer: GenericAnswerRole,
     firstQuestionContent: string,
     secondQuestionContent: string,
-    title: string
+    title: string,
+    discount_rate: string
   ) {
     this.id = question.id;
     this.title = title;
@@ -152,6 +158,7 @@ export class UltimatumGameQuestion implements QuestionI {
         };
       },
     };
+    this.discount_rate = discount_rate;
   }
 }
 

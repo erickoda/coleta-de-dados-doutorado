@@ -25,11 +25,13 @@ const MockedQuestions: MockedQuestionT = {
           value: 55,
           days: 117,
         },
+        discount_rate: "0",
       },
       {
         id: 2,
         other_person_received_value: 150,
         other_person_offer: 20,
+        discount_rate: "0",
       },
     ],
     [
@@ -43,6 +45,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 35,
           days: 186,
         },
+        discount_rate: "0.00016",
       },
       {
         id: 4,
@@ -54,6 +57,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 55,
           days: 117,
         },
+        discount_rate: "0.00016",
       },
       {
         id: 5,
@@ -70,6 +74,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 80,
           days: 162,
         },
+        discount_rate: "0.00016",
       },
       {
         id: 7,
@@ -81,6 +86,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 30,
           days: 179,
         },
+        discount_rate: "0.00040",
       },
       {
         id: 8,
@@ -97,6 +103,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 50,
           days: 160,
         },
+        discount_rate: "0.00040",
       },
       {
         id: 10,
@@ -108,6 +115,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 85,
           days: 157,
         },
+        discount_rate: "0.00040",
       },
       {
         id: 11,
@@ -136,6 +144,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 25,
           days: 136,
         },
+        discount_rate: "0.0010",
       },
       {
         id: 15,
@@ -157,6 +166,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 60,
           days: 111,
         },
+        discount_rate: "0.0010",
       },
       {
         id: 18,
@@ -178,6 +188,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 75,
           days: 119,
         },
+        discount_rate: "0.0010",
       },
     ],
     [
@@ -191,6 +202,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 30,
           days: 80,
         },
+        discount_rate: "0.0025",
       },
       {
         id: 22,
@@ -202,6 +214,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 60,
           days: 89,
         },
+        discount_rate: "0.0025",
       },
       {
         id: 23,
@@ -218,6 +231,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 85,
           days: 91,
         },
+        discount_rate: "0.0025",
       },
       {
         id: 25,
@@ -229,6 +243,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 25,
           days: 53,
         },
+        discount_rate: "0.0060",
       },
       {
         id: 26,
@@ -245,6 +260,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 55,
           days: 62,
         },
+        discount_rate: "0.0060",
       },
       {
         id: 28,
@@ -256,6 +272,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 75,
           days: 61,
         },
+        discount_rate: "0.0060",
       },
       {
         id: 29,
@@ -284,6 +301,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 35,
           days: 29,
         },
+        discount_rate: "0.016",
       },
       {
         id: 33,
@@ -305,6 +323,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 50,
           days: 30,
         },
+        discount_rate: "0.016",
       },
       {
         id: 36,
@@ -326,6 +345,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 80,
           days: 30,
         },
+        discount_rate: "0.016",
       },
     ],
     [
@@ -339,6 +359,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 25,
           days: 19,
         },
+        discount_rate: "0.041",
       },
       {
         id: 40,
@@ -350,6 +371,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 50,
           days: 21,
         },
+        discount_rate: "0.041",
       },
       {
         id: 41,
@@ -366,6 +388,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 75,
           days: 20,
         },
+        discount_rate: "0.041",
       },
       {
         id: 43,
@@ -377,6 +400,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 35,
           days: 13,
         },
+        discount_rate: "0.10",
       },
       {
         id: 44,
@@ -393,6 +417,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 60,
           days: 14,
         },
+        discount_rate: "0.10",
       },
       {
         id: 46,
@@ -404,6 +429,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 80,
           days: 14,
         },
+        discount_rate: "0.10",
       },
       {
         id: 47,
@@ -432,6 +458,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 30,
           days: 7,
         },
+        discount_rate: "0.25",
       },
       {
         id: 51,
@@ -453,6 +480,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 55,
           days: 7,
         },
+        discount_rate: "0.25",
       },
       {
         id: 54,
@@ -474,6 +502,7 @@ const MockedQuestions: MockedQuestionT = {
           value: 85,
           days: 7,
         },
+        discount_rate: "0.25",
       },
     ],
   ],
@@ -495,7 +524,8 @@ const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
             style: "currency",
             currency: "BRL",
           })} em ${question.furthest.days} dias`,
-          `Marque a Opção que preferir: `
+          `Marque a Opção que preferir: `,
+          question.discount_rate
         )
       );
     }
@@ -516,7 +546,8 @@ const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
             style: "currency",
             currency: "BRL",
           }
-        )}. Você recusa ou aceita a oferta?`
+        )}. Você recusa ou aceita a oferta?`,
+        ""
       )
     );
   });
