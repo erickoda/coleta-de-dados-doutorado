@@ -292,7 +292,19 @@ const Final = () => {
                 if (index > 1) {
                   questions_answers.push({
                     ...answer,
-                    question: `${question?.title} ${question?.first.content} ; ${question?.second.content}`,
+                    question: `${question?.title} ${
+                      question?.first.content
+                    } ; ${question?.second.content} ${
+                      question?.discount_rate
+                        ? `- Taxa de Desconto ${question.discount_rate}`
+                        : ""
+                    }`,
+                    answer: answer.answer,
+                    discount_rate: question?.discount_rate
+                      ? question.discount_rate
+                      : "",
+                    guessedTimeInMilliseconds:
+                      answer.guessedTimeInMilliseconds / 1000,
                     user_email: userAnswers.consent_statement.email,
                   });
                 }
@@ -306,11 +318,23 @@ const Final = () => {
               for (let i = 0; i < userAnswers.time_spent.length; i++) {
                 const block: string = `bloco_${i + 1}`;
                 parsed_time_spent[block] =
-                  userAnswers.time_spent[i].final -
-                  userAnswers.time_spent[i].initial;
+                  (userAnswers.time_spent[i].final -
+                    userAnswers.time_spent[i].initial) /
+                  1000;
               }
               return parsed_time_spent;
             })();
+
+            console.log({
+              ...userAnswers,
+              personal_information: {
+                ...userAnswers.personal_information,
+                birth_date:
+                  userAnswers.personal_information.birth_date?.toISOString(),
+              },
+              questions_answers: questions_answers,
+              time_spent: time_spent,
+            });
 
             axios
               .post(`${process.env.NEXT_PUBLIC_DEVELOPMENT_API_URL}`, {
