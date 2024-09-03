@@ -130,12 +130,13 @@ const ConsentStatement = () => {
         </label>
       </div>
 
-      <div className="flex flex-row space-x-2 w-full">
+      <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2 w-full">
         <TextField
           id="outlined-basic"
+          fullWidth
           label="Email"
           size="small"
-          className="w-1/3"
+          // className="w-1/3"
           error={!isEmailValid(userAnswers.consent_statement.email)}
           required
           value={userAnswers.consent_statement.email}
@@ -153,7 +154,8 @@ const ConsentStatement = () => {
           id="outlined-basic"
           label="Nome Completo"
           size="small"
-          className="w-1/3"
+          fullWidth
+          // className="w-1/3"
           error={userAnswers.consent_statement.full_name === ""}
           required
           value={userAnswers.consent_statement.full_name}
@@ -168,6 +170,7 @@ const ConsentStatement = () => {
           }}
         />
         <Button
+          fullWidth
           onClick={() => {
             if (!isUserDataValid()) {
               return;
@@ -176,7 +179,7 @@ const ConsentStatement = () => {
             go_to_next_page();
           }}
           variant="contained"
-          className="w-1/3"
+          // className="w-1/3"
         >
           Continuar
         </Button>

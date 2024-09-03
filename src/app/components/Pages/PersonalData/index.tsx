@@ -55,7 +55,7 @@ const PersonalData = () => {
         </Paragraph>
       </article>
 
-      <div className="grid grid-cols-2 gap-4 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
         <FormControl required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">Gênero</InputLabel>
           <Select
@@ -130,7 +130,7 @@ const PersonalData = () => {
           }
         />
 
-        <FormControl required className="col-span-2" size="small" fullWidth>
+        <FormControl required className="md:col-span-2" size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             Qual dispositivo está usando agora?
           </InputLabel>
@@ -159,7 +159,7 @@ const PersonalData = () => {
           </Select>
         </FormControl>
 
-        <div className="col-span-2 flex flex-row justify-end items-center space-x-2">
+        <div className="md:col-span-2 flex flex-row justify-end items-center space-x-2">
           <Button
             onClick={() => {
               go_to_previous_page();

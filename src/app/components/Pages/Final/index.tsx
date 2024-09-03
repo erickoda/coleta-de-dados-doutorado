@@ -62,7 +62,7 @@ const Final = () => {
         </Paragraph>
       </div>
 
-      <div className="grid grid-cols-2 w-full gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4">
         <FormControl required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             De 1 a 5 quanto você se sentiu calma ou relaxado?
@@ -121,7 +121,7 @@ const Final = () => {
           </Select>
         </FormControl>
         <NumberInput
-          className="col-span-2"
+          className="md:col-span-2"
           value={userAnswers.final_questions.quantity_of_dependents ?? ""}
           onChange={(e) => {
             if (e.target.value === "") {
@@ -152,7 +152,7 @@ const Final = () => {
           }}
           label="Quantas pessoas dependem dessa renda?"
         />
-        <FormControl className=" col-span-2" required size="small" fullWidth>
+        <FormControl className="md:col-span-2" required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             No momento atual você considera sua renda suficiente para sua
             sobrevivência?
@@ -184,7 +184,7 @@ const Final = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl className="col-span-2" required size="small" fullWidth>
+        <FormControl className="md:col-span-2" required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             Você respondeu o experimento com atenção?
           </InputLabel>
@@ -216,7 +216,7 @@ const Final = () => {
           </Select>
         </FormControl>
 
-        <FormControl className="col-span-2" required size="small" fullWidth>
+        <FormControl className="md:col-span-2" required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             Alguma coisa chamou sua atenção ou atrapalhou durante o experimento?
           </InputLabel>
@@ -248,7 +248,7 @@ const Final = () => {
           </Select>
         </FormControl>
 
-        <div className="col-span-2 w-full">
+        <div className="md:col-span-2 w-full">
           <InputLabel className="text-sm" id="aaa">
             Você gostaria de comentar algo?
           </InputLabel>
