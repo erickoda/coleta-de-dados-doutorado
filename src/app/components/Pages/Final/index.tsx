@@ -301,7 +301,7 @@ const Final = () => {
                     }`,
                     answer: answer.answer,
                     discount_rate: question?.discount_rate
-                      ? question.discount_rate
+                      ? question.discount_rate.toString().replaceAll(".", ",")
                       : "",
                     guessedTimeInMilliseconds:
                       answer.guessedTimeInMilliseconds / 1000,
@@ -314,13 +314,16 @@ const Final = () => {
             })();
 
             const time_spent = (() => {
-              const parsed_time_spent: { [key: string]: number } = {};
+              const parsed_time_spent: { [key: string]: string } = {};
               for (let i = 0; i < userAnswers.time_spent.length; i++) {
                 const block: string = `bloco_${i + 1}`;
-                parsed_time_spent[block] =
+                parsed_time_spent[block] = (
                   (userAnswers.time_spent[i].final -
                     userAnswers.time_spent[i].initial) /
-                  1000;
+                  1000
+                )
+                  .toString()
+                  .replaceAll(".", ",");
               }
               return parsed_time_spent;
             })();
