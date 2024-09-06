@@ -6,6 +6,7 @@ const Greet = () => {
     <>
       <Title>
         Mais uma vez muito obrigada pela sua participação, a ciência agradece!
+        😊
       </Title>
     </>
   );

@@ -5,6 +5,7 @@ import { usePages } from "@/app/context/pages";
 import isEmailValid from "@/app/utils/isEmailValid";
 import { Button, Checkbox, TextField } from "@mui/material";
 import React from "react";
+import Paragraph from "../../Global/Paragraph";
 
 const ConsentStatement = () => {
   const { go_to_next_page } = usePages();
@@ -34,7 +35,7 @@ const ConsentStatement = () => {
         Termo de Consentimento Livre e Esclarecido
       </h3>
       <article className="flex flex-col space-y-3 max-h-[30rem] overflow-scroll bg-neutral-800 p-4 rounded">
-        <p className={paragraph_style}>
+        <Paragraph>
           {`
             Você está sendo convidado a participar da pesquisa intitulada "Temporalidade e
             tomada de decisão: avaliação do efeito da percepção subjetiva de tempo nos processos de
@@ -43,32 +44,34 @@ const ConsentStatement = () => {
             Oliveira Bueno do Departamento de Psicologia da FFCLRP da Universidade de São Paulo. Esta
             pesquisa é realizada com uso de software desenvolvido para o experimento.
             `}
-        </p>
-        <p className={paragraph_style}>
+        </Paragraph>
+        <Paragraph>
           {`
             Este comunicado visa dar a você participante convidado uma explicação clara da natureza da
             pesquisa, assim como do seu papel como participante voluntário.
           `}
-        </p>
-        <p className={paragraph_style}>
+        </Paragraph>
+        <Paragraph>
           {`   
             A pesquisa estuda as relações entre a tomada de decisão e alguns processos cognitivos.
             Sua participação tomará no máximo 30 minutos.
             `}
-        </p>
-        {`
+        </Paragraph>
+        <Paragraph>
+          {`
             Sua participação consiste em tomar decisões sob a ótica da economia comportamental e estar
             atento as escolhas apresentadas e estimar quanto tempo durou cada apresentação, de acordo
             com sua percepção.
             `}
-        <p className={paragraph_style}>
+        </Paragraph>
+        <Paragraph>
           {`
             Esta tarefa não apresenta nenhum risco previsível para você, exceto pelo fato de que algum
             estímulo pode parecer pouco familiar por alguns participantes. Os estímulos são breves e não
             se espera que lhe causem desconforto.
             `}
-        </p>
-        <p className={paragraph_style}>
+        </Paragraph>
+        <Paragraph>
           {`
             A participação neste estudo é estritamente voluntária. A informação coletada durante o
             processo será guardada indefinidamente e só será empregada para propósitos de pesquisa.
@@ -76,23 +79,23 @@ const ConsentStatement = () => {
             divulgados de forma grupal evitando assim qualquer uso de nome de pessoa ou família e, por
             tanto, serão anônimas.
             `}
-        </p>
-        <p className={paragraph_style}>
+        </Paragraph>
+        <Paragraph>
           {`
             Você pode interromper a sua participação em qualquer momento sem que isso acarrete algum
             tipo de penalidade. Se alguma das perguntas durante a sessão lhe incomodar, você tem o direito
             de não a responder. Desde já agradecemos sua participação.
             `}
-        </p>
-        <p className={paragraph_style}>
+        </Paragraph>
+        <Paragraph>
           {`
             Esclarecemos que não terá nenhuma despesa financeira para a realização do estudo.
             Portanto, não está previsto reembolso financeiro de qualquer natureza. Este Termo de
             Consentimento poderá ser copiado e arquivado por você. Após o experimento uma cópia
             ficará arquivada pelos pesquisadores.
             `}
-        </p>
-        <p className={paragraph_style}>
+        </Paragraph>
+        <Paragraph>
           {`
             Qualquer dúvida com relação à participação e aos procedimentos dessa pesquisa poderá ser
             esclarecida antes, durante e após a realização do estudo, tanto com a pesquisadora quanto com
@@ -103,7 +106,7 @@ const ConsentStatement = () => {
             (16) 3315-4811 / Fax: (16) 3633-2660 - Atendimento de 2ª a 6ª das 13h30 às 17h30.
             E-mail: coetp@listas.ffclrp.usp.br.
             `}
-        </p>
+        </Paragraph>
       </article>
 
       <h3 className="font-bold text-2xl">

@@ -10,16 +10,16 @@ const StartStimulus = () => {
   const { userAnswers, setUserAnswers } = useAnswers();
 
   useEffect(() => {
-    const indexes_of_first_block_question: number[] = [];
+    const indexes_of_first_question_block: number[] = [];
 
     for (let i = 0; i < 6; i++) {
-      indexes_of_first_block_question.push(11 + i * 9 * 3);
+      indexes_of_first_question_block.push(11 + i * 9 * 3);
     }
 
-    if (indexes_of_first_block_question.includes(actual_page_index)) {
+    if (indexes_of_first_question_block.includes(actual_page_index)) {
       setUserAnswers({
         ...userAnswers,
-        time_spent: indexes_of_first_block_question.map(
+        time_spent: indexes_of_first_question_block.map(
           (question_index, index) => {
             const isTimeAlreadyCalculated =
               userAnswers.time_spent[index].final !== 0;
@@ -35,7 +35,7 @@ const StartStimulus = () => {
             }
 
             const isLastCalculatedBlock =
-              indexes_of_first_block_question[index + 1] === actual_page_index;
+              indexes_of_first_question_block[index + 1] === actual_page_index;
             if (isLastCalculatedBlock) {
               return {
                 initial: userAnswers.time_spent[index].initial,

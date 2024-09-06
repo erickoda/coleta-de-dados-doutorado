@@ -94,7 +94,7 @@ const Final = () => {
         </FormControl>
         <FormControl required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
-            Qual o seu salário?
+            Qual sua renda individual mensal, aproximadamente?
           </InputLabel>
           <Select
             value={Object.keys(MinSalary).find(
