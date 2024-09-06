@@ -12,7 +12,7 @@ import {
 import {
   DichotomousAnswer,
   MinSalary,
-  RelaxedScale,
+  OneToFive,
 } from "@/app/types/user/final_questions";
 import { useAnswers } from "@/app/context/answers";
 import NumberInput from "../../Global/NumberInput";
@@ -62,15 +62,15 @@ const Final = () => {
         </Paragraph>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4">
+      <div className="grid grid-cols-1 w-full gap-4">
         <FormControl required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             De 1 a 5 quanto você se sentiu calma ou relaxado?
           </InputLabel>
           <Select
-            value={Object.keys(RelaxedScale).find(
+            value={Object.keys(OneToFive).find(
               (key) =>
-                RelaxedScale[key as keyof typeof RelaxedScale] ===
+                OneToFive[key as keyof typeof OneToFive] ===
                 userAnswers.final_questions.relaxed_level
             )}
             label="De 1 a 5 quanto você se sentiu calma ou relaxado?"
@@ -80,14 +80,72 @@ const Final = () => {
                 final_questions: {
                   ...userAnswers.final_questions,
                   relaxed_level:
-                    RelaxedScale[e.target.value as keyof typeof RelaxedScale],
+                    OneToFive[e.target.value as keyof typeof OneToFive],
                 },
               })
             }
           >
-            {Object.keys(RelaxedScale).map((key) => (
+            {Object.keys(OneToFive).map((key) => (
               <MenuItem key={key} value={key}>
-                {RelaxedScale[key as keyof typeof RelaxedScale]}
+                {OneToFive[key as keyof typeof OneToFive]}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl required size="small" fullWidth>
+          <InputLabel id="demo-simple-select-label">
+            De 1 a 5 quanto você se sentiu impulsivo?
+          </InputLabel>
+          <Select
+            value={Object.keys(OneToFive).find(
+              (key) =>
+                OneToFive[key as keyof typeof OneToFive] ===
+                userAnswers.final_questions.impulsivity
+            )}
+            label="De 1 a 5 quanto você se sentiu impulsivo?"
+            onChange={(e) =>
+              setUserAnswers({
+                ...userAnswers,
+                final_questions: {
+                  ...userAnswers.final_questions,
+                  impulsivity:
+                    OneToFive[e.target.value as keyof typeof OneToFive],
+                },
+              })
+            }
+          >
+            {Object.keys(OneToFive).map((key) => (
+              <MenuItem key={key} value={key}>
+                {OneToFive[key as keyof typeof OneToFive]}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl required size="small" fullWidth>
+          <InputLabel id="demo-simple-select-label">
+            De 1 a 5 quanto você se sentiu autocontrolado?
+          </InputLabel>
+          <Select
+            value={Object.keys(OneToFive).find(
+              (key) =>
+                OneToFive[key as keyof typeof OneToFive] ===
+                userAnswers.final_questions.auto_control
+            )}
+            label="De 1 a 5 quanto você se sentiu autocontrolado?"
+            onChange={(e) =>
+              setUserAnswers({
+                ...userAnswers,
+                final_questions: {
+                  ...userAnswers.final_questions,
+                  auto_control:
+                    OneToFive[e.target.value as keyof typeof OneToFive],
+                },
+              })
+            }
+          >
+            {Object.keys(OneToFive).map((key) => (
+              <MenuItem key={key} value={key}>
+                {OneToFive[key as keyof typeof OneToFive]}
               </MenuItem>
             ))}
           </Select>
@@ -121,7 +179,7 @@ const Final = () => {
           </Select>
         </FormControl>
         <NumberInput
-          className="md:col-span-2"
+          className=""
           value={userAnswers.final_questions.quantity_of_dependents ?? ""}
           onChange={(e) => {
             if (e.target.value === "") {
@@ -152,7 +210,7 @@ const Final = () => {
           }}
           label="Quantas pessoas dependem dessa renda?"
         />
-        <FormControl className="md:col-span-2" required size="small" fullWidth>
+        <FormControl className="" required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             No momento atual você considera sua renda suficiente para sua
             sobrevivência?
@@ -184,7 +242,7 @@ const Final = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl className="md:col-span-2" required size="small" fullWidth>
+        <FormControl className="" required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             Você respondeu o experimento com atenção?
           </InputLabel>
@@ -216,7 +274,7 @@ const Final = () => {
           </Select>
         </FormControl>
 
-        <FormControl className="md:col-span-2" required size="small" fullWidth>
+        <FormControl className="" required size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             Alguma coisa chamou sua atenção ou atrapalhou durante o experimento?
           </InputLabel>
@@ -248,7 +306,7 @@ const Final = () => {
           </Select>
         </FormControl>
 
-        <div className="md:col-span-2 w-full">
+        <div className=" w-full">
           <InputLabel className="text-sm" id="aaa">
             Você gostaria de comentar algo?
           </InputLabel>

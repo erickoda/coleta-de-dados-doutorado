@@ -32,6 +32,8 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
       have_answered_with_attention: null,
       have_something_disturbed_you: null,
       something_to_add: null,
+      impulsivity: null,
+      auto_control: null,
     },
     time_spent: [],
   });

@@ -1,4 +1,4 @@
-enum RelaxedScale {
+enum OneToFive {
   _1 = "1",
   _2 = "2",
   _3 = "3",
@@ -23,15 +23,17 @@ enum DichotomousAnswer {
 }
 
 type FinalQuestionBlock = {
-  relaxed_level: RelaxedScale | null;
+  relaxed_level: OneToFive | null;
   salary: MinSalary | null;
   quantity_of_dependents: number | null;
   have_enough_income: DichotomousAnswer | null;
   have_answered_with_attention: DichotomousAnswer | null;
   have_something_disturbed_you: DichotomousAnswer | null;
   something_to_add: string | null;
+  impulsivity: OneToFive | null;
+  auto_control: OneToFive | null;
 };
 
-export { RelaxedScale, MinSalary, DichotomousAnswer };
+export { OneToFive, MinSalary, DichotomousAnswer };
 
 export default FinalQuestionBlock;
