@@ -10,7 +10,7 @@ const Test = () => {
   return (
     <>
       <div className="flex flex-col items-center">
-        <Title>Tutorial!</Title>
+        <Title>Treino!</Title>
         <Paragraph>
           Essas duas primeiras questões são para ensinar a dinâmica das
           perguntas!

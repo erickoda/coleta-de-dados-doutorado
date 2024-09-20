@@ -10,7 +10,7 @@ const Start = () => {
   return (
     <>
       <div className="flex flex-col">
-        <Title>Agora é Para Valer!</Title>
+        <Title>Fim do Treino! Agora é Para Valer!</Title>
         <Paragraph>
           Caso tenha alguma dúvida entre em contato com a pesquisadora
           (gstiburcio@usp.br), por favor. Caso não haja dúvidas, por favor,
