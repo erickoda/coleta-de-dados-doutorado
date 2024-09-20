@@ -537,7 +537,8 @@ const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
         GenericAnswerRole.Accept,
         "Recusar",
         "Aceitar",
-        `${question.other_person_received_value.toLocaleString("pt-BR", {
+        `Um participante recebeu 
+        ${question.other_person_received_value.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         })} para dividir com você. Ele lhe ofereceu ${question.other_person_offer.toLocaleString(
@@ -546,7 +547,7 @@ const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
             style: "currency",
             currency: "BRL",
           }
-        )}. Você recusa ou aceita a oferta?`,
+        )}. Se você recusar ninguem receberá, caso você aceite ambos receberão conforme a divisão.`,
         ""
       )
     );
