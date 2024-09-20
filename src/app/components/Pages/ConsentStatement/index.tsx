@@ -59,9 +59,10 @@ const ConsentStatement = () => {
         </Paragraph>
         <Paragraph>
           {`
-            Sua participação consiste em tomar decisões sob a ótica da economia comportamental e estar
-            atento as escolhas apresentadas e estimar quanto tempo durou cada apresentação, de acordo
-            com sua percepção.
+            Sua participação consiste:
+              A) Em tomar decisões sob a ótica da economia comportamental
+              B) Estar atento as escolhas apresentadas 
+              C) Estimar quanto tempo durou cada apresentação, de acordo com sua percepção.
             `}
         </Paragraph>
         <Paragraph>
