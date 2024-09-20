@@ -194,50 +194,61 @@ const MockedQuestions: MockedQuestionT = {
   ],
 };
 
-const Questions: GenericQuestion[][] = MockedQuestions.blocks.map((block) => {
-  return block.map((question) => {
-    if (isIntertemporalChoiceQuestion(question)) {
+function parseQuestions(MockedQuestions: MockedQuestionT) {
+  const range = MockedQuestions.blocks.length - 1;
+  const randomStartIndex = Math.floor(Math.random()*range) + 1;
+
+  const tempBlock = MockedQuestions.blocks[1];
+  MockedQuestions.blocks[1] = MockedQuestions.blocks[randomStartIndex];
+  MockedQuestions.blocks[randomStartIndex] = tempBlock;
+
+  return MockedQuestions.blocks.map((block) => {
+    return block.map((question) => {
+      if (isIntertemporalChoiceQuestion(question)) {
+        return new GenericQuestion(
+          new IntertemporalChoice(
+            question.id,
+            GenericAnswerRole.Immediate,
+            GenericAnswerRole.LongTerm,
+            `${question.closest.value.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })} Hoje`,
+            `${question.furthest.value.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })} em ${question.furthest.days} dias`,
+            `Marque a Opção que preferir: `,
+            question.discount_rate
+          )
+        );
+      }
+  
       return new GenericQuestion(
-        new IntertemporalChoice(
-          question.id,
-          GenericAnswerRole.Immediate,
-          GenericAnswerRole.LongTerm,
-          `${question.closest.value.toLocaleString("pt-BR", {
+        new UltimatumGameQuestion(
+          question,
+          GenericAnswerRole.Reject,
+          GenericAnswerRole.Accept,
+          "Recusar",
+          "Aceitar",
+          `Um participante recebeu 
+          ${question.other_person_received_value.toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
-          })} Hoje`,
-          `${question.furthest.value.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          })} em ${question.furthest.days} dias`,
-          `Marque a Opção que preferir: `,
-          question.discount_rate
+          })} para dividir com você. Ele lhe ofereceu ${question.other_person_offer.toLocaleString(
+            "pt-BR",
+            {
+              style: "currency",
+              currency: "BRL",
+            }
+          )}. Se você recusar ninguem receberá, caso você aceite ambos receberão conforme a divisão.`,
+          ""
         )
       );
-    }
-
-    return new GenericQuestion(
-      new UltimatumGameQuestion(
-        question,
-        GenericAnswerRole.Reject,
-        GenericAnswerRole.Accept,
-        "Recusar",
-        "Aceitar",
-        `Um participante recebeu 
-        ${question.other_person_received_value.toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        })} para dividir com você. Ele lhe ofereceu ${question.other_person_offer.toLocaleString(
-          "pt-BR",
-          {
-            style: "currency",
-            currency: "BRL",
-          }
-        )}. Se você recusar ninguem receberá, caso você aceite ambos receberão conforme a divisão.`,
-        ""
-      )
-    );
+    });
   });
-});
+}
+
+const Questions: GenericQuestion[][] = parseQuestions(MockedQuestions);
 
 export default Questions;
