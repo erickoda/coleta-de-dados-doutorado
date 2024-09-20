@@ -1,7 +1,6 @@
 import Title from "@/app/components/Global/Title";
 import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
-import { GenericAnswerRole } from "@/app/types/question/generic_answers";
 import { QuestionI } from "@/app/types/question/generic_questions";
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -11,58 +10,20 @@ type GenericQuestionProps = {
 };
 
 const GenericQuestion = ({ question }: GenericQuestionProps) => {
-  const { go_to_next_page, go_to_previous_page, actual_page_index } =
+  const { go_to_next_page } =
     usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
 
   const [isDisabled, setIsDisabled] = useState(true);
-  const [timeoutExpired, setTimeoutExpired] = useState(false);
-  const [isAbleToGoToNextPage, setIsAbleToGoToNextPage] = useState(false);
-
-  const getAnswer = () => {
-    const answer = userAnswers.questions_answers.find(
-      (answer) => answer.question_id === question.id
-    )?.answer;
-
-    return answer || GenericAnswerRole.None;
-  };
 
   useEffect(() => {
-    if (11 + 1 * 9 * 3 <= actual_page_index) {
-      const timeout_to_enable = setTimeout(() => setIsDisabled(false), 1);
-      const timeout_to_go_to_enable_next_page = setTimeout(() => {
-        setTimeoutExpired(true);
-      }, 2000);
+    const timeout_to_enable_question = setTimeout(() => setIsDisabled(false), 20_000);
 
-      return () => {
-        clearTimeout(timeout_to_enable);
-        clearTimeout(timeout_to_go_to_enable_next_page);
-      };
-    } else {
-      const timeout_to_enable = setTimeout(() => setIsDisabled(false), 15000);
-      const timeout_to_go_to_enable_next_page = setTimeout(() => {
-        setTimeoutExpired(true);
-      }, 20000);
+    return () => {
+      clearTimeout(timeout_to_enable_question);
+    };
 
-      return () => {
-        clearTimeout(timeout_to_enable);
-        clearTimeout(timeout_to_go_to_enable_next_page);
-      };
-    }
   }, []);
-
-  useEffect(() => {
-    if (!timeoutExpired) return;
-
-    const answer = getAnswer();
-    if (answer === GenericAnswerRole.None && timeoutExpired) {
-      go_to_previous_page();
-      alert("Você precisa responder a pergunta dentro do prazo estipulado!");
-    } else {
-      setIsDisabled(true);
-      setIsAbleToGoToNextPage(true);
-    }
-  }, [timeoutExpired]);
 
   return (
     <>
@@ -100,7 +61,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
       </div>
       <Button
         fullWidth
-        disabled={!isAbleToGoToNextPage}
+        disabled={isDisabled}
         variant="contained"
         onClick={() => go_to_next_page()}
       >
