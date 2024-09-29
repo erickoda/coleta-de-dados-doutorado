@@ -83,112 +83,112 @@ const MockedQuestions: MockedQuestionT = {
     ],
     [
       {
-        id: 3,
+        id: 12,
         closest: {
-          value: 34,
-          days: 0,
-        },
-        furthest: {
-          value: 35,
-          days: 186,
-        },
-        discount_rate: "0.00016",
-      },
-      {
-        id: 4,
-        closest: {
-          value: 54,
-          days: 0,
-        },
-        furthest: {
-          value: 55,
-          days: 117,
-        },
-        discount_rate: "0.00016",
-      },
-      {
-        id: 6,
-        closest: {
-          value: 78,
-          days: 0,
-        },
-        furthest: {
-          value: 80,
-          days: 162,
-        },
-        discount_rate: "0.00016",
-      },
-      {
-        id: 7,
-        closest: {
-          value: 28,
-          days: 0,
-        },
-        furthest: {
-          value: 30,
-          days: 179,
-        },
-        discount_rate: "0.00040",
-      },
-      {
-        id: 9,
-        closest: {
-          value: 47,
-          days: 0,
-        },
-        furthest: {
-          value: 50,
-          days: 160,
-        },
-        discount_rate: "0.00040",
-      },
-      {
-        id: 10,
-        closest: {
-          value: 80,
-          days: 0,
-        },
-        furthest: {
-          value: 85,
-          days: 157,
-        },
-        discount_rate: "0.00040",
-      },
-      {
-        id: 14,
-        closest: {
-          value: 22,
+          value: 14,
           days: 0,
         },
         furthest: {
           value: 25,
-          days: 136,
+          days: 19,
         },
-        discount_rate: "0.0010",
+        discount_rate: "0.041",
       },
       {
-        id: 17,
+        id: 13,
         closest: {
-          value: 54,
+          value: 27,
           days: 0,
         },
         furthest: {
-          value: 60,
-          days: 111,
+          value: 50,
+          days: 21,
         },
-        discount_rate: "0.0010",
+        discount_rate: "0.041",
       },
       {
-        id: 20,
+        id: 14,
         closest: {
-          value: 67,
+          value: 41,
           days: 0,
         },
         furthest: {
           value: 75,
-          days: 119,
+          days: 20,
         },
-        discount_rate: "0.0010",
+        discount_rate: "0.041",
+      },
+      {
+        id: 15,
+        closest: {
+          value: 15,
+          days: 0,
+        },
+        furthest: {
+          value: 35,
+          days: 13,
+        },
+        discount_rate: "0.10",
+      },
+      {
+        id: 16,
+        closest: {
+          value: 25,
+          days: 0,
+        },
+        furthest: {
+          value: 60,
+          days: 14,
+        },
+        discount_rate: "0.10",
+      },
+      {
+        id: 17,
+        closest: {
+          value: 33,
+          days: 0,
+        },
+        furthest: {
+          value: 80,
+          days: 14,
+        },
+        discount_rate: "0.10",
+      },
+      {
+        id: 18,
+        closest: {
+          value: 11,
+          days: 0,
+        },
+        furthest: {
+          value: 30,
+          days: 7,
+        },
+        discount_rate: "0.25",
+      },
+      {
+        id: 19,
+        closest: {
+          value: 20,
+          days: 0,
+        },
+        furthest: {
+          value: 55,
+          days: 7,
+        },
+        discount_rate: "0.25",
+      },
+      {
+        id: 20,
+        closest: {
+          value: 31,
+          days: 0,
+        },
+        furthest: {
+          value: 85,
+          days: 7,
+        },
+        discount_rate: "0.25",
       },
     ],
   ],
