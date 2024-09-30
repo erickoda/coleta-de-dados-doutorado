@@ -12,7 +12,7 @@ const StartStimulus = () => {
   useEffect(() => {
     const indexes_of_first_question_block: number[] = [];
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 2; i++) {
       indexes_of_first_question_block.push(11 + i * 9 * 3);
     }
 
