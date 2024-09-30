@@ -39,7 +39,7 @@ const ConsentStatement = () => {
           {`
             Você está sendo convidado a participar da pesquisa intitulada "Temporalidade e
             tomada de decisão: avaliação do efeito da percepção subjetiva de tempo nos processos de
-            cooperação e de escolhas intertemporais sob a ótica da economia comportamental.", conduzida
+            cooperação e de escolhas intertemporais.", conduzida
             pela doutoranda Gabriela Soares Tiburcio, sob a orientação do Prof. Dr. José Lino
             Oliveira Bueno do Departamento de Psicologia da FFCLRP da Universidade de São Paulo. Esta
             pesquisa é realizada com uso de software desenvolvido para o experimento.
