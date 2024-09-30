@@ -56,7 +56,7 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
       })(),
       time_spent: (() => {
         const time_spent = [];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 2; i++) {
           time_spent.push({
             initial: 0,
             final: 0,
