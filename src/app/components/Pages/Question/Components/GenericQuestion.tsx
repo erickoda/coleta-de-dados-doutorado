@@ -18,7 +18,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    const timeout_to_enable_question = setTimeout(() => setIsDisabled(false), 1_000);
+    const timeout_to_enable_question = setTimeout(() => setIsDisabled(false), 20_000);
 
     return () => {
       clearTimeout(timeout_to_enable_question);
