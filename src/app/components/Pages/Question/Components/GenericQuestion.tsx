@@ -3,6 +3,7 @@ import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
 import { GenericAnswerRole } from "@/app/types/question/generic_answers";
 import { QuestionI } from "@/app/types/question/generic_questions";
+import playAudio from "@/app/utils/playAudio";
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
@@ -18,13 +19,15 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    const timeout_to_enable_question = setTimeout(() => setIsDisabled(false), 20_000);
+    const timeout_to_enable_question = setTimeout(() => isDisabled == true ? setIsDisabled(false) : null, 20_000);
 
     return () => {
       clearTimeout(timeout_to_enable_question);
     };
 
   }, []);
+
+  useEffect(() => playAudio(), [isDisabled]);
 
   return (
     <>
