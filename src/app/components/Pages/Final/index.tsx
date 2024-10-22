@@ -363,6 +363,7 @@ const Final = () => {
                       : "",
                     guessedTimeInMilliseconds:
                       answer.guessedTimeInMilliseconds / 1000,
+                    time: answer.time / 1000,
                     user_email: userAnswers.consent_statement.email,
                   });
                 }
