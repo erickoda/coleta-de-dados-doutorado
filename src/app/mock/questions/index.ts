@@ -37,48 +37,48 @@ const MockedQuestions: MockedQuestionT = {
     [
       {
         id: 3,
-        other_person_received_value: 100,
-        other_person_offer: 41,
+        other_person_received_value: 150,
+        other_person_offer: 40,
       },
       {
         id: 4,
-        other_person_received_value: 100,
-        other_person_offer: 33,
+        other_person_received_value: 150,
+        other_person_offer: 34,
       },
       {
         id: 5,
-        other_person_received_value: 100,
+        other_person_received_value: 150,
         other_person_offer: 31,
       },
       {
         id: 6,
         other_person_received_value: 100,
-        other_person_offer: 27,
+        other_person_offer: 20,
       },
       {
         id: 7,
-        other_person_received_value: 100,
-        other_person_offer: 25,
+        other_person_received_value: 150,
+        other_person_offer: 27,
       },
       {
         id: 8,
-        other_person_received_value: 100,
-        other_person_offer: 20,
+        other_person_received_value: 150,
+        other_person_offer: 25,
       },
       {
         id: 9,
         other_person_received_value: 100,
-        other_person_offer: 14,
+        other_person_offer: 15,
       },
       {
         id: 10,
         other_person_received_value: 100,
-        other_person_offer: 15,
+        other_person_offer: 10,
       },
       {
         id: 11,
         other_person_received_value: 100,
-        other_person_offer: 11,
+        other_person_offer: 5,
       },
     ],
     [
