@@ -15,10 +15,9 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
   const { go_to_next_page } =
     usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
-  const [ initialTime, setInitialTime ] = useState(0);
+  const [ initialTime, _ ] = useState(performance.now());
 
   useEffect(() => {
-    setInitialTime(performance.now());
     playAudio();
   }, []);
 
@@ -63,14 +62,14 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
         }
         variant="contained"
         onClick={() => {
-          playAudio();
+          playAudio(460);
           setUserAnswers({
             ...userAnswers,
             questions_answers: userAnswers.questions_answers.map((answer) => {
               if (answer.question_id === question.id) {
                 return {
                   ...answer,
-                  guessedTimeInMilliseconds: performance.now() - initialTime,
+                  time: performance.now() - initialTime,
                 };
               }
               return answer;
