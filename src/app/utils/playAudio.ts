@@ -11,7 +11,7 @@ export default function playAudio(): void {
 
     gainNode.gain.setValueAtTime(0.8, audioContext.currentTime); // Volume
     oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 1); // Duração do beep: 1 segundo
+    oscillator.stop(audioContext.currentTime + 0.5); // Duração do beep: 1 segundo
 
     oscillator.onended = () => {
       audioContext.close();

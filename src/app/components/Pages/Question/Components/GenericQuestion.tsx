@@ -15,39 +15,19 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
   const { go_to_next_page } =
     usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
-  const [initialTime, setInitialTime ] = useState(0);
-  const [hasAnswered, setHasAnswered] = useState(false);
+  const [ initialTime, setInitialTime ] = useState(0);
 
   useEffect(() => {
     setInitialTime(performance.now());
     playAudio();
   }, []);
 
-  useEffect(() => {
-    playAudio();
-    setUserAnswers({
-      ...userAnswers,
-      questions_answers: userAnswers.questions_answers.map((answer) => {
-        if (answer.question_id === question.id) {
-          return {
-            ...answer,
-            guessedTimeInMilliseconds: performance.now() - initialTime,
-          };
-        }
-        return answer;
-      }),
-    });
-  }, [hasAnswered]);
-
   return (
     <>
       <Title>{question.title}</Title>
       <div className="flex flex-row space-x-2 w-full">
         <Button
-          onClick={() => {
-            setUserAnswers(question.first.getAnswer(userAnswers));
-            setHasAnswered(true);
-          }}
+          onClick={() => setUserAnswers(question.first.getAnswer(userAnswers))}
           fullWidth
           variant={
             userAnswers.questions_answers.find(
@@ -82,7 +62,22 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
           )?.answer === GenericAnswerRole.None
         }
         variant="contained"
-        onClick={() => go_to_next_page()}
+        onClick={() => {
+          playAudio();
+          setUserAnswers({
+            ...userAnswers,
+            questions_answers: userAnswers.questions_answers.map((answer) => {
+              if (answer.question_id === question.id) {
+                return {
+                  ...answer,
+                  guessedTimeInMilliseconds: performance.now() - initialTime,
+                };
+              }
+              return answer;
+            }),
+          });
+          go_to_next_page();
+        }}
       >
         Próximo
       </Button>
