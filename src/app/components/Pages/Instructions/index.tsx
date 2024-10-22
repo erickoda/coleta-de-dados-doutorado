@@ -25,6 +25,8 @@ const Instructions = () => {
           Por favor, durante o experimento procure permanecer sentado(a) numa
           posição cômoda e relaxada, sem distrações.
           <b> Lembre-se: sua participação é muito importante para nós.</b>
+          Você passará pelo treino com 2 questões e em seguida para o experimento
+          com 18 questões semelhantes ao treino, ok?
         </Paragraph>
       </div>
 

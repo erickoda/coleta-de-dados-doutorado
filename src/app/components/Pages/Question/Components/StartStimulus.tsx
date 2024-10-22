@@ -65,17 +65,20 @@ const StartStimulus = () => {
         <Paragraph>
           <ul>
             <li>
-              • Clique sobre o botão Iniciar da apresentação. <br />
+              • Assim que você clicar em “INICIAR” irá escutar dois bipes:
+              1 no inicio da apresentação da questão e 1 após sua resposta; <br />
             </li>
 
             <li>
-              • Quando a opções de escolhas destacarem, clique na opção
-              escolhida, após clique em botão Próximo. <br />
+              • Você escolherá uma opção que preferir entre duas opções; <br />
             </li>
 
-            <li className=" text-red-300">
-              • Caso você não responda a pergunta no tempo determinado, você
-              voltará para está tela. <br />
+            <li>
+              • Clicando em “PROXIMO” você irá estimar o intervalo entre os 2 bipes, ou seja, o inicio da apresentação e após a resposta; <br />
+            </li>
+
+            <li>
+              • Clicando em “CONTINUAR” você irá para a proxima escolha e assim sucessivamente; <br />
             </li>
           </ul>
         </Paragraph>
