@@ -15,28 +15,40 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
   const { go_to_next_page } =
     usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
-
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [initialTime, setInitialTime ] = useState(0);
+  const [hasAnswered, setHasAnswered] = useState(false);
 
   useEffect(() => {
-    const timeout_to_enable_question = setTimeout(() => isDisabled == true ? setIsDisabled(false) : null, 20_000);
-
-    return () => {
-      clearTimeout(timeout_to_enable_question);
-    };
-
+    setInitialTime(performance.now());
+    playAudio();
   }, []);
 
-  useEffect(() => playAudio(), [isDisabled]);
+  useEffect(() => {
+    playAudio();
+    setUserAnswers({
+      ...userAnswers,
+      questions_answers: userAnswers.questions_answers.map((answer) => {
+        if (answer.question_id === question.id) {
+          return {
+            ...answer,
+            guessedTimeInMilliseconds: performance.now() - initialTime,
+          };
+        }
+        return answer;
+      }),
+    });
+  }, [hasAnswered]);
 
   return (
     <>
       <Title>{question.title}</Title>
       <div className="flex flex-row space-x-2 w-full">
         <Button
-          onClick={() => setUserAnswers(question.first.getAnswer(userAnswers))}
+          onClick={() => {
+            setUserAnswers(question.first.getAnswer(userAnswers));
+            setHasAnswered(true);
+          }}
           fullWidth
-          disabled={isDisabled}
           variant={
             userAnswers.questions_answers.find(
               (answer) => answer.question_id === question.id
@@ -51,7 +63,6 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
         <Button
           onClick={() => setUserAnswers(question.second.getAnswer(userAnswers))}
           fullWidth
-          disabled={isDisabled}
           variant={
             userAnswers.questions_answers.find(
               (answer) => answer.question_id === question.id
@@ -66,10 +77,9 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
       <Button
         fullWidth
         disabled={
-          isDisabled ||
-          (userAnswers.questions_answers.find(
+          userAnswers.questions_answers.find(
             (answer) => answer.question_id === question.id
-          )?.answer === GenericAnswerRole.None)
+          )?.answer === GenericAnswerRole.None
         }
         variant="contained"
         onClick={() => go_to_next_page()}
