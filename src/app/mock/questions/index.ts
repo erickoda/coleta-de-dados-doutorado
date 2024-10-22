@@ -85,17 +85,77 @@ const MockedQuestions: MockedQuestionT = {
       {
         id: 12,
         closest: {
-          value: 14,
+          value: 54,
           days: 0,
         },
         furthest: {
-          value: 25,
-          days: 19,
+          value: 55,
+          days: 117,
         },
-        discount_rate: "0.041",
+        discount_rate: "0.00016",
       },
       {
         id: 13,
+        closest: {
+          value: 47,
+          days: 0,
+        },
+        furthest: {
+          value: 50,
+          days: 160,
+        },
+        discount_rate: "0.00040",
+      },
+      {
+        id: 14,
+        closest: {
+          value: 54,
+          days: 0,
+        },
+        furthest: {
+          value: 60,
+          days: 111,
+        },
+        discount_rate: "0.0010",
+      },
+      {
+        id: 15,
+        closest: {
+          value: 49,
+          days: 0,
+        },
+        furthest: {
+          value: 60,
+          days: 89,
+        },
+        discount_rate: "0.0025",
+      },
+      {
+        id: 16,
+        closest: {
+          value: 40,
+          days: 0,
+        },
+        furthest: {
+          value: 55,
+          days: 62,
+        },
+        discount_rate: "0.0060",
+      },
+      {
+        id: 17,
+        closest: {
+          value: 34,
+          days: 0,
+        },
+        furthest: {
+          value: 50,
+          days: 30,
+        },
+        discount_rate: "0.016",
+      },
+      {
+        id: 18,
         closest: {
           value: 27,
           days: 0,
@@ -107,31 +167,7 @@ const MockedQuestions: MockedQuestionT = {
         discount_rate: "0.041",
       },
       {
-        id: 14,
-        closest: {
-          value: 41,
-          days: 0,
-        },
-        furthest: {
-          value: 75,
-          days: 20,
-        },
-        discount_rate: "0.041",
-      },
-      {
-        id: 15,
-        closest: {
-          value: 15,
-          days: 0,
-        },
-        furthest: {
-          value: 35,
-          days: 13,
-        },
-        discount_rate: "0.10",
-      },
-      {
-        id: 16,
+        id: 19,
         closest: {
           value: 25,
           days: 0,
@@ -140,52 +176,16 @@ const MockedQuestions: MockedQuestionT = {
           value: 60,
           days: 14,
         },
-        discount_rate: "0.10",
+        discount_rate: "0.1",
       },
       {
-        id: 17,
-        closest: {
-          value: 33,
-          days: 0,
-        },
-        furthest: {
-          value: 80,
-          days: 14,
-        },
-        discount_rate: "0.10",
-      },
-      {
-        id: 18,
-        closest: {
-          value: 11,
-          days: 0,
-        },
-        furthest: {
-          value: 30,
-          days: 7,
-        },
-        discount_rate: "0.25",
-      },
-      {
-        id: 19,
+        id: 20,
         closest: {
           value: 20,
           days: 0,
         },
         furthest: {
           value: 55,
-          days: 7,
-        },
-        discount_rate: "0.25",
-      },
-      {
-        id: 20,
-        closest: {
-          value: 31,
-          days: 0,
-        },
-        furthest: {
-          value: 85,
           days: 7,
         },
         discount_rate: "0.25",
