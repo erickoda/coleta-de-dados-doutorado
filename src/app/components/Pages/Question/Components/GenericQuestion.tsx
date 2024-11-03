@@ -12,14 +12,41 @@ type GenericQuestionProps = {
 };
 
 const GenericQuestion = ({ question }: GenericQuestionProps) => {
-  const { go_to_next_page } =
+  const { go_to_next_page, go_to_previous_page } =
     usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
-  const [ initialTime, _ ] = useState(performance.now());
+  const [ timeHasExpired, setTimeHasExpired ] = useState<boolean>(false);
 
   useEffect(() => {
+
+    console.log("dasfa");
+
+    const timeout_to_max_time_to_answer = setTimeout(() =>
+      timeHasExpired === false ? setTimeHasExpired(true) : null, 7_000
+    );
     playAudio();
-  }, []);
+
+    return () => {
+      clearTimeout(timeout_to_max_time_to_answer)
+    };
+  },[]);
+
+  useEffect(() => {
+
+    const user_has_answered = userAnswers.questions_answers.find(
+        (answer) => answer.question_id === question.id
+      )?.answer === question.first.answer || userAnswers.questions_answers.find(
+        (answer) => answer.question_id === question.id
+      )?.answer === question.second.answer;
+
+    if (timeHasExpired && !user_has_answered) {
+      go_to_previous_page();
+      alert("Você não respondeu a tempo, por favor, tente novamente.");
+      return;
+    }
+
+    playAudio();
+  }, [timeHasExpired]);
 
   return (
     <>
@@ -55,26 +82,9 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
       </div>
       <Button
         fullWidth
-        disabled={
-          userAnswers.questions_answers.find(
-            (answer) => answer.question_id === question.id
-          )?.answer === GenericAnswerRole.None
-        }
+        disabled={!timeHasExpired}
         variant="contained"
         onClick={() => {
-          playAudio();
-          setUserAnswers({
-            ...userAnswers,
-            questions_answers: userAnswers.questions_answers.map((answer) => {
-              if (answer.question_id === question.id) {
-                return {
-                  ...answer,
-                  time: performance.now() - initialTime,
-                };
-              }
-              return answer;
-            }),
-          });
           go_to_next_page();
         }}
       >

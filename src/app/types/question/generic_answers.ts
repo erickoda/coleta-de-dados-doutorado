@@ -11,7 +11,6 @@ enum GenericAnswerRole {
 type Answer = {
   question_id: number;
   answer: GenericAnswerRole;
-  time: number;
   guessedTimeInMilliseconds: number;
 };
 

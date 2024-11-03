@@ -57,6 +57,14 @@ const GuessTheTimeSpent = ({ question_id }: GuessTheTimeSpentProps) => {
               • Assim que julgar o tempo passado igual ao estímulo musical anterior (apresentação + reposta),
               aperte a tecla “FIM” <br />
             </li>
+
+            <li>
+              •
+              <b>
+                Lembre-se: é muito importante que você não utilize nenhum recurso para
+                mensurar a duração dos procedimentos, como contar, bater os pés, bater as mãos, etc.
+              </b>
+            </li>
           </ul>
         </Paragraph>
       </div>

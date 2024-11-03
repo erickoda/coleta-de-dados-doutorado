@@ -48,8 +48,7 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
             questions_answers.push({
               question_id: generic_question.question.id,
               answer: GenericAnswerRole.None,
-              guessedTimeInMilliseconds: 0,
-              time: 0
+              guessedTimeInMilliseconds: 0
             });
           }
         }
