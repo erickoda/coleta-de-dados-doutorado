@@ -46,22 +46,16 @@ const GuessTheTimeSpent = ({ question_id }: GuessTheTimeSpentProps) => {
   return (
     <>
       <div className="flex flex-col">
-        <Title>Simule o Tempo da Questão</Title>
+        <Title>Por favor, estime a duração</Title>
         <Paragraph>
           <ul>
             <li>
-              • Agora você irá reproduzir a duração total da apresentação e
-              escolha, que você acabou de fazer. <br />
+              • Quando estiver pronto(a), clique no botão “INÍCIO” e deixe o tempo do intervalo passar. <br />
             </li>
 
             <li>
-              • Para isso você deve apertar a tecla INÍCIO e deixar o tempo
-              passar. <br />
-            </li>
-
-            <li>
-              • Quando você achar que o tempo que está passando for igual ao do
-              estímulo apresentado, aperte a tecla FIM. <br />
+              • Assim que julgar o tempo passado igual ao estímulo musical anterior (apresentação + reposta),
+              aperte a tecla “FIM” <br />
             </li>
           </ul>
         </Paragraph>
