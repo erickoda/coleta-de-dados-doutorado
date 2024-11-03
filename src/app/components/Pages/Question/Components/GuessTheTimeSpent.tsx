@@ -2,14 +2,16 @@ import Paragraph from "@/app/components/Global/Paragraph";
 import Title from "@/app/components/Global/Title";
 import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
+import { QuestionI } from "@/app/types/question/generic_questions";
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import GenericQuestionStyle from "./GenericQuestionStyle";
 
 type GuessTheTimeSpentProps = {
-  question_id: number;
+  question: QuestionI;
 };
 
-const GuessTheTimeSpent = ({ question_id }: GuessTheTimeSpentProps) => {
+const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
   const { go_to_next_page } = usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
 
@@ -30,7 +32,7 @@ const GuessTheTimeSpent = ({ question_id }: GuessTheTimeSpentProps) => {
       setUserAnswers({
         ...userAnswers,
         questions_answers: userAnswers.questions_answers.map((answer) =>
-          answer.question_id === question_id
+          answer.question_id === question.id
             ? {
                 ...answer,
                 guessedTimeInMilliseconds: performance.now() - initialTime,
@@ -67,6 +69,19 @@ const GuessTheTimeSpent = ({ question_id }: GuessTheTimeSpentProps) => {
             </li>
           </ul>
         </Paragraph>
+      </div>
+
+      <div className="flex flex-col space-y-3 p-4 border rounded-md">
+        <Title>Relembrando Último Questão...</Title>
+        <GenericQuestionStyle
+          title={question.title}
+          firstQuestionContent={question.first.content}
+          firstQuestionDisabled={true}
+          secondQuestionContent={question.second.content}
+          secondQuestionDisabled={true}
+        
+          disabledNextButton={true}
+        />
       </div>
 
       <div className="flex flex-row space-x-2 w-full">

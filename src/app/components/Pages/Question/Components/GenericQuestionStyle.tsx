@@ -10,10 +10,12 @@ type GenericQuestionStylePropsT = {
   firstQuestionOnClick?: () => void;
   firstQuestionVariant?: "text" | "contained" | "outlined";
   firstQuestionContent: string;
+  firstQuestionDisabled?: boolean;
 
   secondQuestionOnClick?: () => void;
   secondQuestionVariant?: "text" | "contained" | "outlined";
   secondQuestionContent: string;
+  secondQuestionDisabled?: boolean;
 
   disabledNextButton: boolean;
 };
@@ -24,10 +26,12 @@ const GenericQuestionStyle: FC<GenericQuestionStylePropsT> = ({
   firstQuestionOnClick,
   firstQuestionVariant = "outlined",
   firstQuestionContent,
+  firstQuestionDisabled,
 
   secondQuestionOnClick,
   secondQuestionVariant = "outlined",
   secondQuestionContent,
+  secondQuestionDisabled,
 
   disabledNextButton
 }) => {
@@ -41,6 +45,7 @@ const GenericQuestionStyle: FC<GenericQuestionStylePropsT> = ({
           onClick={firstQuestionOnClick}
           fullWidth
           variant={firstQuestionVariant}
+          disabled={firstQuestionDisabled}
         >
           {firstQuestionContent}
         </Button>
@@ -49,6 +54,7 @@ const GenericQuestionStyle: FC<GenericQuestionStylePropsT> = ({
           onClick={secondQuestionOnClick}
           fullWidth
           variant={secondQuestionVariant}
+          disabled={secondQuestionDisabled}
         >
           {secondQuestionContent}
         </Button>

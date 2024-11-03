@@ -62,7 +62,7 @@ function PagesProvider({ children }: PagesProviderProps) {
         );
         questions.push(
           <Question.GuessTheTimeSpent
-            question_id={generic_question.question.id}
+            question={generic_question.question}
             key={generic_question.question.id}
           />
         );
