@@ -62,7 +62,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
         }
         variant="contained"
         onClick={() => {
-          playAudio(460);
+          playAudio();
           setUserAnswers({
             ...userAnswers,
             questions_answers: userAnswers.questions_answers.map((answer) => {
