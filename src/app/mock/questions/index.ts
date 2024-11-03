@@ -18,18 +18,18 @@ const MockedQuestions: MockedQuestionT = {
       {
         id: 1,
         closest: {
-          value: 54,
+          value: 15,
           days: 0,
         },
         furthest: {
-          value: 55,
-          days: 117,
+          value: 35,
+          days: 13,
         },
         discount_rate: "0",
       },
       {
         id: 2,
-        other_person_received_value: 150,
+        other_person_received_value: 75,
         other_person_offer: 20,
         discount_rate: "0",
       },
