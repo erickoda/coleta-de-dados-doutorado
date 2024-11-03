@@ -1,11 +1,13 @@
+"use client";
+
 import Title from "@/app/components/Global/Title";
 import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
-import { GenericAnswerRole } from "@/app/types/question/generic_answers";
 import { QuestionI } from "@/app/types/question/generic_questions";
 import playAudio from "@/app/utils/playAudio";
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import GenericQuestionStyle from "./GenericQuestionStyle";
 
 type GenericQuestionProps = {
   question: QuestionI;
@@ -18,12 +20,10 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
   const [ timeHasExpired, setTimeHasExpired ] = useState<boolean>(false);
 
   useEffect(() => {
-
-    console.log("dasfa");
-
     const timeout_to_max_time_to_answer = setTimeout(() =>
       timeHasExpired === false ? setTimeHasExpired(true) : null, 7_000
     );
+
     playAudio();
 
     return () => {
@@ -50,46 +50,30 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
 
   return (
     <>
-      <Title>{question.title}</Title>
-      <div className="flex flex-row space-x-2 w-full">
-        <Button
-          onClick={() => setUserAnswers(question.first.getAnswer(userAnswers))}
-          fullWidth
-          variant={
-            userAnswers.questions_answers.find(
-              (answer) => answer.question_id === question.id
-            )?.answer === question.first.answer
-              ? "contained"
-              : "outlined"
-          }
-        >
-          {question.first.content}
-        </Button>
-
-        <Button
-          onClick={() => setUserAnswers(question.second.getAnswer(userAnswers))}
-          fullWidth
-          variant={
-            userAnswers.questions_answers.find(
-              (answer) => answer.question_id === question.id
-            )?.answer === question.second.answer
-              ? "contained"
-              : "outlined"
-          }
-        >
-          {question.second.content}
-        </Button>
-      </div>
-      <Button
-        fullWidth
-        disabled={!timeHasExpired}
-        variant="contained"
-        onClick={() => {
-          go_to_next_page();
-        }}
-      >
-        Próximo
-      </Button>
+      <GenericQuestionStyle
+        title={question.title}
+        firstQuestionOnClick={() => setUserAnswers(question.first.getAnswer(userAnswers))}
+        firstQuestionVariant={
+          userAnswers.questions_answers.find(
+            (answer) => answer.question_id === question.id
+          )?.answer === question.first.answer
+            ? "contained"
+            : "outlined"
+        }
+        firstQuestionContent={question.first.content}
+      
+        secondQuestionOnClick={() => setUserAnswers(question.second.getAnswer(userAnswers))}
+        secondQuestionVariant={
+          userAnswers.questions_answers.find(
+            (answer) => answer.question_id === question.id
+          )?.answer === question.second.answer
+            ? "contained"
+            : "outlined"
+        }
+        secondQuestionContent={question.second.content}
+      
+        disabledNextButton={!timeHasExpired}
+      />
     </>
   );
 };
