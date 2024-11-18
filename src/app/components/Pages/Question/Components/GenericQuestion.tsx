@@ -21,7 +21,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
 
   useEffect(() => {
     const timeout_to_max_time_to_answer = setTimeout(() =>
-      timeHasExpired === false ? setTimeHasExpired(true) : null, 7_000
+      timeHasExpired === false ? setTimeHasExpired(true) : null, 6_000
     );
 
     playAudio();
