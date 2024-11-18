@@ -6,9 +6,9 @@ const ProgressBar = () => {
 
   return (
     <>
-      <div className="w-full bg-neutral-500 h-1">
+      <div className="w-full bg-neutral-300 h-1">
         <div
-          className="bg-neutral-100 h-1"
+          className="bg-neutral-500 h-1"
           style={{ width: `${conclusion_percentage}%` }}
         ></div>
       </div>
