@@ -71,7 +71,7 @@ const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
         </Paragraph>
       </div>
 
-      <div className="flex flex-col space-y-3 p-4 border rounded-md">
+      <div className="flex flex-col w-full items-center space-y-3 p-4 border rounded-md">
         <Title>Relembrando Último Questão...</Title>
         <GenericQuestionStyle
           title={question.title}

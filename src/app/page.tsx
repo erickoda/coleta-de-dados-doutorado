@@ -12,7 +12,17 @@ import ProgressBar from "./components/ProgressBar";
 
 const darkTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
+    success: {
+      main: '#000000',
+    },
+    warning: {
+      main: '#000000',
+    },
+    primary: {
+      main: '#000000',
+    }
+
   },
 });
 

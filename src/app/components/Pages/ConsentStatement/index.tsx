@@ -11,8 +11,6 @@ const ConsentStatement = () => {
   const { go_to_next_page } = usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
 
-  const paragraph_style = "font-normal text-sm text-justify";
-
   const isUserDataValid = () => {
     if (!isEmailValid(userAnswers.consent_statement.email)) {
       alert("Email Inválido");
@@ -34,7 +32,7 @@ const ConsentStatement = () => {
       <h3 className="font-bold text-2xl">
         Termo de Consentimento Livre e Esclarecido
       </h3>
-      <article className="flex flex-col space-y-3 max-h-[30rem] overflow-scroll bg-neutral-800 p-4 rounded">
+      <article className="flex flex-col space-y-3 max-h-[30rem] overflow-scroll bg-neutral-300 p-4 rounded">
         <Paragraph>
           {`
             Você está sendo convidado a participar da pesquisa intitulada "Temporalidade e
