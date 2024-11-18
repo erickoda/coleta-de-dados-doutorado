@@ -63,22 +63,39 @@ const StartStimulus = () => {
       <div className="flex flex-col">
         <Title>Antes de Iniciar, lembre-se:</Title>
         <Paragraph>
-          <ul>
+          <ul className="flex flex-col space-y-2">
             <li>
-              • Assim que você clicar em “INICIAR” irá escutar dois bipes:
-              1 no inicio da apresentação da questão e 1 após sua resposta; <br />
+              • Assim que você clicar em “INICIAR” irá ouvir o primeiro bipe para iniciar a tarefa. A tarefa é escolher entre as duas opções apresentadas. 
+              <br />
             </li>
 
             <li>
-              • Você escolherá uma opção que preferir entre duas opções; <br />
+              • Após a escolha você ouvirá o segundo bipe, sinalizando o fim da tarefa.
+              <br />
             </li>
 
             <li>
-              • Clicando em “PROXIMO” você irá estimar o intervalo entre os 2 bipes, ou seja, o inicio da apresentação e após a resposta; <br />
+              • Clicando em “PRÓXIMO” você irá estimar a duração da tarefa, ou seja, a duração entre os dois bipes.
+              <br />
             </li>
 
             <li>
-              • Clicando em “CONTINUAR” você irá para a proxima escolha e assim sucessivamente; <br />
+              • Clicando em “CONTINUAR” você irá para a próxima escolha e assim sucessivamente;
+              <br />
+
+              <div className="flex flex-col pl-4 space-y-1">
+                <ul>
+                  <li>
+                    • Caso você não escolha no tempo determinado, a pergunta se repetirá.<br />
+                  </li>
+
+                  <li>
+                    • Por favor, durante o experimento utilize um fone de ouvido e mantenha o
+                    volume em uma altura confortavel, procure permanecer sentado(a) numa posição
+                    cômoda e relaxada, sem distrações. <b>Lembre-se: sua participação é muito importante para nós</b>.
+                  </li>
+                </ul>
+              </div>
             </li>
           </ul>
         </Paragraph>
