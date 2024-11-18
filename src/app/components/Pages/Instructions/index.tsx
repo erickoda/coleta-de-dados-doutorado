@@ -22,9 +22,9 @@ const Instructions = () => {
       <div className="flex flex-col space-y-1">
         <Title>Aviso!</Title>
         <Paragraph>
-          Por favor, durante o experimento utilize um fone de ouvido e mantenha
-          o volume em uma altura confortável, procure permanecer sentado(a) numa
-          posição cômoda e relaxada, sem distrações. 
+        Por favor, durante o experimento utilize um fone de ouvido e o
+        mantenha em um volume confortável, procure permanecer sentado(a) numa posição cômoda e relaxada,
+        sem distrações. 
           <b> Lembre-se: sua participação é muito importante para nós.</b>
         </Paragraph>
       </div>
@@ -32,7 +32,7 @@ const Instructions = () => {
       <div className="flex flex-col space-y-1">
         <h4 className="text-lg font-bold">Passo a Passo</h4>
         <Paragraph>
-          Você passará pelo treino com 2 questões e em seguida para o experimento
+          Primeiro você passará pelo treino com 2 questões e em seguida para o experimento
           com 18 questões semelhantes ao treino, ok?
         </Paragraph>
       </div>
@@ -40,10 +40,9 @@ const Instructions = () => {
       <div className="flex flex-col space-y-1">
         <h4 className="text-lg font-bold">Atenção!</h4>
         <Paragraph>
-          É muito importante que você não utilize nenhum recurso para
-          mensurar a duração dos procedimentos, como contar, bater os pés,
-          bater as mãos, etc. Ao término deste treino, será sinalizado o início do
-          experimento e você iniciará clicando no botão “Continuar”.
+        É muito importante que você não utilize nenhum recurso para mensurar a duração dos
+        procedimentos, como contar, bater os pés, bater as mãos, etc. Ao término deste treino,
+        será sinalizado o início do experimento e você iniciará clicando no botão “Continuar”.
         </Paragraph>
       </div>
 
