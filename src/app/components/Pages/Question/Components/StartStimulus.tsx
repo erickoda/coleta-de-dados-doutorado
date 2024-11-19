@@ -61,26 +61,26 @@ const StartStimulus = () => {
   return (
     <>
       <div className="flex flex-col">
-        <Title>Antes de Iniciar, lembre-se:</Title>
+        <Title>Instruções:</Title>
         <Paragraph>
           <ul className="flex flex-col space-y-2">
             <li>
-              • Assim que você clicar em “INICIAR” irá ouvir o primeiro bipe para iniciar a tarefa. A tarefa é escolher entre as duas opções apresentadas. 
+              1 - Assim que você clicar em “INICIAR” irá ouvir o primeiro bipe para iniciar a tarefa. A tarefa é escolher entre as duas opções apresentadas. 
               <br />
             </li>
 
             <li>
-              • Após a escolha você ouvirá o segundo bipe, sinalizando o fim da tarefa.
+              2- Após a escolha você ouvirá o segundo bipe, sinalizando o fim da tarefa.
               <br />
             </li>
 
             <li>
-              • Clicando em “PRÓXIMO” você irá estimar a duração da tarefa, ou seja, a duração entre os dois bipes.
+              3 - Clicando em “PRÓXIMO” você irá estimar a duração da tarefa, ou seja, a duração entre os dois bipes.
               <br />
             </li>
 
             <li>
-              • Clicando em “CONTINUAR” você irá para a próxima escolha e assim sucessivamente;
+              4 - Clicando em “CONTINUAR” você irá para a próxima escolha e assim sucessivamente;
               <br />
 
               <div className="flex flex-col pl-4 space-y-1">

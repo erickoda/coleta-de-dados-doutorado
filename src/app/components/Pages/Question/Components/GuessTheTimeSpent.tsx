@@ -52,19 +52,19 @@ const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
         <Paragraph>
           <ul>
             <li>
-              • Quando estiver pronto(a), clique no botão “INÍCIO” e deixe o tempo do intervalo passar. <br />
+              • Quando estiver pronto(a), clique no botão “INÍCIO” e deixe o tempo da tarefa passar. <br />
             </li>
 
             <li>
-              • Assim que julgar o tempo passado igual ao estímulo musical anterior (apresentação + reposta),
-              aperte a tecla “FIM” <br />
+              • Assim que julgar o tempo passado igual ao da tarefa anterior, aperte a tecla “FIM” <br />
             </li>
 
             <li>
               •
               <b>
-                Lembre-se: é muito importante que você não utilize nenhum recurso para
-                mensurar a duração dos procedimentos, como contar, bater os pés, bater as mãos, etc.
+                Lembre-se: é muito importante que você não utilize nenhum recurso
+                para mensurar a duração dos procedimentos, como contar, bater os pés,
+                bater as mãos, etc.
               </b>
             </li>
           </ul>
