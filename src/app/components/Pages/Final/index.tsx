@@ -386,6 +386,19 @@ const Final = () => {
               return parsed_time_spent;
             })();
 
+            const calibrations = (() => {
+              const parsed_calibrations: { [key: string]: string } = {};
+              userAnswers.calibrations.forEach((calibration, index) => {
+                const calibration_block: string = `Calibragem ${calibration.correct}`; 
+                parsed_calibrations[calibration_block] = (
+                  calibration.guessed / 1000
+                )
+                  .toString()
+                  .replaceAll(".", ",");
+              });
+              return parsed_calibrations;
+            })();
+
             console.log({
               ...userAnswers,
               personal_information: {
@@ -407,6 +420,7 @@ const Final = () => {
                 },
                 questions_answers: questions_answers,
                 time_spent: time_spent,
+                calibrations,
               })
               .then(() => {
                 go_to_next_page();

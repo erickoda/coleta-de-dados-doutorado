@@ -1,4 +1,5 @@
 import QuestionAnswer from "../question/generic_answers";
+import Calibration from "./calibration";
 import ConsentStatement from "./consent_statement";
 import FinalQuestionBlock from "./final_questions";
 import PersonalInformation from "./personal_information";
@@ -10,6 +11,7 @@ type UserAnswers = {
   questions_answers: QuestionAnswer[];
   final_questions: FinalQuestionBlock;
   time_spent: TimeSpent[];
+  calibrations: Calibration[];
 };
 
 export default UserAnswers;

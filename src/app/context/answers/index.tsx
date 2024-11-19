@@ -6,6 +6,8 @@ import Questions from "@/app/mock/questions";
 import Answer, {
   GenericAnswerRole,
 } from "@/app/types/question/generic_answers";
+import Calibration from "@/app/types/user/calibration";
+import MockedCalibrations from "@/app/mock/calibration";
 
 const AnswersContext = createContext<AnswersContextT>({} as AnswersContextT);
 
@@ -36,9 +38,11 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
       auto_control: null,
     },
     time_spent: [],
+    calibrations: [],
   });
 
   useEffect(() => {
+
     setUserAnswers({
       ...userAnswers,
       questions_answers: (() => {
@@ -64,6 +68,8 @@ const AnswersProvider = ({ children }: ContextProviderProps) => {
         }
         return time_spent;
       })(),
+
+      calibrations: MockedCalibrations,
     });
   }, []);
 

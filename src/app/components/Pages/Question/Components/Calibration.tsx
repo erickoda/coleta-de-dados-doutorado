@@ -1,0 +1,89 @@
+import Paragraph from '@/app/components/Global/Paragraph'
+import Title from '@/app/components/Global/Title'
+import { useAnswers } from '@/app/context/answers'
+import { usePages } from '@/app/context/pages'
+import CalibrationT from '@/app/types/user/calibration'
+import { Button } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+
+type CalibrationProps = {
+  calibration: CalibrationT;
+}
+
+const Calibration = ({calibration}: CalibrationProps) => {
+
+    const { go_to_next_page } = usePages();
+    const { userAnswers, setUserAnswers } = useAnswers();
+  
+    const [step, setStep] = useState<"initial" | "guessing" | "end">("initial");
+    const [initialTime, setInitialTime] = useState<DOMHighResTimeStamp>(0);
+  
+    useEffect(() => {
+      if (step === "initial") {
+        return;
+      }
+  
+      if (step === "guessing") {
+        setInitialTime(performance.now());
+        return;
+      }
+  
+      const timer = window.requestAnimationFrame(() => {
+        setUserAnswers({
+          ...userAnswers,
+          calibrations: userAnswers.calibrations.map((user_calibration) =>
+            user_calibration.correct === calibration.correct
+              ? {
+                  ...user_calibration,
+                  guessed: performance.now() - initialTime
+                }
+              : user_calibration
+          ),
+        });
+      });
+  
+      return () => window.cancelAnimationFrame(timer);
+    }, [step]);
+
+  return (
+    <>
+      <Title>Estimação Temporal</Title>
+      <Paragraph>
+        <b>Por favor, estime um intervalo de: 1 segundo.</b><br/>
+
+        • Quando estiver pronto(a), clique no botão “INÍCIO” e deixe {calibration.correct} segundo passar,
+        rapidamente clique no botão “FIM”.
+      </Paragraph>
+
+      <div className="flex flex-row space-x-2 w-full">
+        <Button
+          onClick={() => setStep("guessing")}
+          disabled={step !== "initial"}
+          variant="outlined"
+          fullWidth
+        >
+          Início
+        </Button>
+        <Button
+          onClick={() => setStep("end")}
+          disabled={step !== "guessing"}
+          variant="outlined"
+          fullWidth
+        >
+          Fim
+        </Button>
+      </div>
+      <Button
+        fullWidth
+        disabled={step !== "end"}
+        variant="contained"
+        onClick={() => go_to_next_page()}
+      >
+        Continuar
+      </Button>
+
+    </>
+  )
+}
+
+export default Calibration

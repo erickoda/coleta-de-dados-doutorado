@@ -9,6 +9,7 @@ import Questions from "@/app/mock/questions";
 import Question from "@/app/components/Pages/Question";
 import Final from "@/app/components/Pages/Final";
 import Greet from "@/app/components/Pages/Greet";
+import MockedCalibrations from "@/app/mock/calibration";
 
 const PagesContext = createContext<PageContext>({} as PageContext);
 
@@ -26,7 +27,7 @@ function PagesProvider({ children }: PagesProviderProps) {
     <Question.Test key={"Test"} />,
   ]);
 
-  const conclusion_percentage = (100 * actual_page_index) / pagesQueue.length;
+  const conclusion_percentage = (100 * actual_page_index) / pagesQueue.length - 1;
 
   const go_to_next_page = () => {
     if (actual_page_index < pagesQueue.length - 1) {
@@ -73,9 +74,21 @@ function PagesProvider({ children }: PagesProviderProps) {
       }
     }
 
+    const calibrations: JSX.Element[] = [];
+
+    for (let calibration of MockedCalibrations) {
+      calibrations.push(
+        <Question.Calibration
+          key={`Calibration ${calibration.correct}`}
+          calibration={calibration}
+        />
+      )
+    }
+
     setPagesQueue([
       ...pagesQueue,
       ...questions,
+      ...calibrations,
       <Final key={"final"} />,
       <Greet key="greet" />,
     ]);
