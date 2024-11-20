@@ -81,6 +81,7 @@ const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
           secondQuestionDisabled={true}
         
           disabledNextButton={true}
+          disableContainer
         />
       </div>
 

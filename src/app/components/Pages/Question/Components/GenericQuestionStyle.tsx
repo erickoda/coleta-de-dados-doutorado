@@ -18,6 +18,8 @@ type GenericQuestionStylePropsT = {
   secondQuestionDisabled?: boolean;
 
   disabledNextButton: boolean;
+
+  disableContainer?: boolean;
 };
 
 const GenericQuestionStyle: FC<GenericQuestionStylePropsT> = ({
@@ -33,13 +35,14 @@ const GenericQuestionStyle: FC<GenericQuestionStylePropsT> = ({
   secondQuestionContent,
   secondQuestionDisabled,
 
-  disabledNextButton
+  disabledNextButton,
+  disableContainer
 }) => {
   const { go_to_next_page } = usePages();
 
   return (
     <>
-      <Title>{title}</Title>
+      <Title className={disableContainer ? " text-neutral-400" : ""}>{title}</Title>
       <div className="flex flex-row space-x-2 w-full">
         <Button
           onClick={firstQuestionOnClick}
