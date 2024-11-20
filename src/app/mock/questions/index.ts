@@ -29,8 +29,8 @@ const MockedQuestions: MockedQuestionT = {
       },
       {
         id: 2,
-        other_person_received_value: 75,
-        other_person_offer: 20,
+        other_person_received_value: 150,
+        other_person_offer: 75,
         discount_rate: "0",
       },
     ],
