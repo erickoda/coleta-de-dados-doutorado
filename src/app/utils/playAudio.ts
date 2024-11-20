@@ -6,12 +6,12 @@ export default function playAudio(hertz: number = 110): void {
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
 
-  oscillator.type = 'square'; // Tipo de onda: square, sine, sawtooth, triangle
+  oscillator.type = 'triangle'; // Tipo de onda: square, sine, sawtooth, triangle
   oscillator.frequency.setValueAtTime(hertz, audioContext.currentTime); // Frequência em Hz
 
-  gainNode.gain.setValueAtTime(Math.pow(10, 55 / 20), audioContext.currentTime);
+  gainNode.gain.setValueAtTime(Math.pow(10, 15 / 20), audioContext.currentTime);
   oscillator.start(audioContext.currentTime);
-  oscillator.stop(audioContext.currentTime + 0.05); 
+  oscillator.stop(audioContext.currentTime + 0.1); 
 
   oscillator.onended = () => {
     audioContext.close();
