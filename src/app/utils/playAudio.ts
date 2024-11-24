@@ -1,19 +1,9 @@
-export default function playAudio(hertz: number = 110): void {
-  const audioContext = new window.AudioContext;
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
+import * as Tone from 'tone';
 
-  oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
+export default function playAudio(): void {
+  const synth = new Tone.Synth().toDestination();
+  const now = Tone.now();
 
-  oscillator.type = 'triangle'; // Tipo de onda: square, sine, sawtooth, triangle
-  oscillator.frequency.setValueAtTime(hertz, audioContext.currentTime); // Frequência em Hz
-
-  gainNode.gain.setValueAtTime(Math.pow(10, 15 / 20), audioContext.currentTime);
-  oscillator.start(audioContext.currentTime);
-  oscillator.stop(audioContext.currentTime + 0.1); 
-
-  oscillator.onended = () => {
-    audioContext.close();
-  };
+  synth.triggerAttack("A4", now);
+  synth.triggerRelease(now + 0.001);
 }
