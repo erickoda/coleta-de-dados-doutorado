@@ -52,7 +52,7 @@ const ConsentStatement = () => {
         <Paragraph>
           {`   
             A pesquisa estuda as relações entre a tomada de decisão e alguns processos cognitivos.
-            Sua participação tomará no máximo 30 minutos.
+            Sua participação tomará no máximo 15 minutos.
             `}
         </Paragraph>
         <Paragraph>
