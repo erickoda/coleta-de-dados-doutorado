@@ -5,5 +5,5 @@ export default function playAudio(): void {
   const now = Tone.now();
 
   synth.triggerAttack("A4", now);
-  synth.triggerRelease(now + 0.001);
+  synth.triggerRelease(now + 0.1);
 }
