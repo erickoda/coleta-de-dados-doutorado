@@ -63,7 +63,7 @@ const Final = () => {
       </div>
 
       <div className="grid grid-cols-1 w-full gap-4">
-        <FormControl required size="small" fullWidth>
+        <FormControl  size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             De 1 a 5 quanto você se sentiu calma ou relaxado?
           </InputLabel>
@@ -92,7 +92,7 @@ const Final = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl required size="small" fullWidth>
+        <FormControl  size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             De 1 a 5 quanto você se sentiu impulsivo?
           </InputLabel>
@@ -121,7 +121,7 @@ const Final = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl required size="small" fullWidth>
+        <FormControl  size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             De 1 a 5 quanto você se sentiu autocontrolado?
           </InputLabel>
@@ -150,7 +150,7 @@ const Final = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl required size="small" fullWidth>
+        <FormControl  size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             Qual sua renda individual mensal, aproximadamente?
           </InputLabel>
@@ -210,7 +210,7 @@ const Final = () => {
           }}
           label="Quantas pessoas dependem dessa renda?"
         />
-        <FormControl className="" required size="small" fullWidth>
+        <FormControl className=""  size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             No momento atual você considera sua renda suficiente para sua
             sobrevivência?
@@ -242,7 +242,7 @@ const Final = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl className="" required size="small" fullWidth>
+        <FormControl className=""  size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             Você respondeu o experimento com atenção?
           </InputLabel>
@@ -274,7 +274,7 @@ const Final = () => {
           </Select>
         </FormControl>
 
-        <FormControl className="" required size="small" fullWidth>
+        <FormControl className=""  size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
             Alguma coisa chamou sua atenção ou atrapalhou durante o experimento?
           </InputLabel>
