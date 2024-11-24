@@ -1,9 +1,9 @@
 enum GenericAnswerRole {
-  Immediate = "Imediata",
-  LongTerm = "Longo Prazo",
+  Immediate = "1",
+  LongTerm = "0",
 
-  Accept = "Aceito",
-  Reject = "Rejeitado",
+  Accept = "0",
+  Reject = "1",
 
   None = "None",
 }
