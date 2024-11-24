@@ -1,4 +1,3 @@
-import { useAnswers } from "@/app/context/answers";
 import React from "react";
 
 type LayoutProps = {
@@ -6,12 +5,6 @@ type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
-
-  const { userAnswers } = useAnswers();
-
-  console.log(userAnswers.time_spent[0]);
-  console.log(userAnswers.time_spent[1]);
-
   return (
     <>
       <main className="flex col min-h-screen bg-neutral-300 flex-col items-center justify-center p-2">

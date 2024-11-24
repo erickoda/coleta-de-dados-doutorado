@@ -22,6 +22,7 @@ import UserAnswers from "@/app/types/user/userAnswers";
 import { ParsedAnswers } from "@/app/types/user/parsed_answer";
 import Questions from "@/app/mock/questions";
 import { usePages } from "@/app/context/pages";
+import Answer from "@/app/types/question/generic_answers";
 
 const Final = () => {
   const { userAnswers, setUserAnswers } = useAnswers();
@@ -336,7 +337,7 @@ const Final = () => {
             const questions_answers = (() => {
               const questions_answers: ParsedAnswers[] = [];
 
-              userAnswers.questions_answers.forEach((answer, index) => {
+              userAnswers.questions_answers.forEach((answer: Answer, index) => {
                 const question = (() => {
                   for (const block of Questions) {
                     for (const question of block) {
@@ -354,7 +355,7 @@ const Final = () => {
                       question?.first.content
                     } ; ${question?.second.content} ${
                       question?.discount_rate
-                        ? `- Taxa de Desconto ${question.discount_rate}`
+                        ? `- ${question.discount_rate}`
                         : ""
                     }`,
                     answer: answer.answer,
@@ -398,17 +399,6 @@ const Final = () => {
               });
               return parsed_calibrations;
             })();
-
-            console.log({
-              ...userAnswers,
-              personal_information: {
-                ...userAnswers.personal_information,
-                birth_date:
-                  userAnswers.personal_information.birth_date?.toISOString(),
-              },
-              questions_answers: questions_answers,
-              time_spent: time_spent,
-            });
 
             axios
               .post(`${process.env.NEXT_PUBLIC_DEVELOPMENT_API_URL}`, {

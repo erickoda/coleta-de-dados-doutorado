@@ -223,7 +223,7 @@ function parseQuestions(MockedQuestions: MockedQuestionT) {
           )
         );
       }
-  
+
       return new GenericQuestion(
         new UltimatumGameQuestion(
           question,
@@ -242,7 +242,11 @@ function parseQuestions(MockedQuestions: MockedQuestionT) {
               currency: "BRL",
             }
           )}. Se você recusar ninguem receberá, caso você aceite ambos receberão conforme a divisão.`,
-          ""
+          (question.other_person_offer/question.other_person_received_value).toLocaleString("pt-BR", {
+            style: "percent",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          })
         )
       );
     });
