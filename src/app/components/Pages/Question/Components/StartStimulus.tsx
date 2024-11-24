@@ -13,7 +13,7 @@ const StartStimulus = () => {
     const indexes_of_first_question_block: number[] = [];
 
     for (let i = 0; i < 2; i++) {
-      indexes_of_first_question_block.push(11 + i * 9 * 3);
+      indexes_of_first_question_block.push(11 + (i * 9 * 2 + (i === 0 ? 0 : 1)));
     }
 
     if (indexes_of_first_question_block.includes(actual_page_index)) {

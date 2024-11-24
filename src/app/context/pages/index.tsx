@@ -52,9 +52,15 @@ function PagesProvider({ children }: PagesProviderProps) {
     for (const block of Questions) {
       for (const generic_question of block) {
         quantity_of_questions += 1;
-        questions.push(
-          <Question.StartStimulus key={generic_question.question.id} />
-        );
+
+        const question_numbers = [1, 2, 3, 12];
+
+        if (question_numbers.includes(quantity_of_questions)) {
+          questions.push(
+            <Question.StartStimulus key={generic_question.question.id} />
+          );
+        }
+
         questions.push(
           <Question.GenericQuestion
             key={generic_question.question.id}

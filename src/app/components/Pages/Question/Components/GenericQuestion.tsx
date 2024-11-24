@@ -1,11 +1,8 @@
 "use client";
 
-import Title from "@/app/components/Global/Title";
 import { useAnswers } from "@/app/context/answers";
-import { usePages } from "@/app/context/pages";
 import { QuestionI } from "@/app/types/question/generic_questions";
 import playAudio from "@/app/utils/playAudio";
-import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import GenericQuestionStyle from "./GenericQuestionStyle";
 
@@ -14,14 +11,12 @@ type GenericQuestionProps = {
 };
 
 const GenericQuestion = ({ question }: GenericQuestionProps) => {
-  const { go_to_next_page, go_to_previous_page } =
-    usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
   const [ timeHasExpired, setTimeHasExpired ] = useState<boolean>(false);
 
   useEffect(() => {
     const timeout_to_max_time_to_answer = setTimeout(() =>
-      timeHasExpired === false ? setTimeHasExpired(true) : null, 6_000
+      timeHasExpired === false ? setTimeHasExpired(true) : null, 1_000
     );
 
     playAudio();
@@ -39,9 +34,21 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
         (answer) => answer.question_id === question.id
       )?.answer === question.second.answer;
 
+    if (!timeHasExpired) {
+      const timeout_to_max_time_to_answer = setTimeout(() =>
+        timeHasExpired === false ? setTimeHasExpired(true) : null, 1_000
+      );
+
+      playAudio();
+
+      return () => {
+        clearTimeout(timeout_to_max_time_to_answer)
+      };
+    }
+
     if (timeHasExpired && !user_has_answered) {
-      go_to_previous_page();
       alert("Você não respondeu a tempo, por favor, tente novamente.");
+      setTimeHasExpired(false);
       return;
     }
 

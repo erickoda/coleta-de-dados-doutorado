@@ -29,26 +29,26 @@ const Final = () => {
 
   const [isSendingData, setIsSendingData] = useState<boolean>(false);
 
-  useEffect(() => {
-    setUserAnswers({
-      ...userAnswers,
-      time_spent: userAnswers.time_spent.map((time, index) => {
-        if (
-          userAnswers.time_spent[userAnswers.time_spent.length - 1].final !== 0
-        )
-          return time;
+  // useEffect(() => {
+  //   setUserAnswers({
+  //     ...userAnswers,
+  //     time_spent: userAnswers.time_spent.map((time, index) => {
+  //       if (
+  //         userAnswers.time_spent[userAnswers.time_spent.length - 1].final !== 0
+  //       )
+  //         return time;
 
-        if (index === userAnswers.time_spent.length - 1) {
-          return {
-            initial: time.initial,
-            final: performance.now(),
-          };
-        }
+  //       if (index === userAnswers.time_spent.length - 1) {
+  //         return {
+  //           initial: time.initial,
+  //           final: performance.now(),
+  //         };
+  //       }
 
-        return time;
-      }),
-    });
-  }, []);
+  //       return time;
+  //     }),
+  //   });
+  // }, []);
 
   return (
     <>
