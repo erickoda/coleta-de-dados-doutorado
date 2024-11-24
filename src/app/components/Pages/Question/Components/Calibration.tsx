@@ -49,7 +49,7 @@ const Calibration = ({calibration}: CalibrationProps) => {
     <>
       <Title>Estimação Temporal</Title>
       <Paragraph>
-        <b>Por favor, estime um intervalo de: 1 segundo.</b><br/>
+        <b>Por favor, estime um intervalo de: {calibration.correct} segundo.</b><br/>
 
         • Quando estiver pronto(a), clique no botão “INÍCIO” e deixe {calibration.correct} segundo passar,
         rapidamente clique no botão “FIM”.
