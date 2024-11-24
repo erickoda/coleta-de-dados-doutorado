@@ -150,8 +150,8 @@ const Final = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl  size="small" fullWidth>
-          <InputLabel id="demo-simple-select-label">
+        <FormControl size="small" fullWidth>
+          <InputLabel className="" id="demo-simple-select-label">
             Qual sua renda individual mensal, aproximadamente?
           </InputLabel>
           <Select
@@ -160,7 +160,7 @@ const Final = () => {
                 MinSalary[key as keyof typeof MinSalary] ===
                 userAnswers.final_questions.salary
             )}
-            label="Qual o seu salário?"
+            label="Qual sua renda individual mensal, aproximadamente?"
             onChange={(e) =>
               setUserAnswers({
                 ...userAnswers,
@@ -172,7 +172,7 @@ const Final = () => {
             }
           >
             {Object.keys(MinSalary).map((key) => (
-              <MenuItem key={key} value={key}>
+              <MenuItem className="overflow-x-auto text-sm" key={key} value={key}>
                 {MinSalary[key as keyof typeof MinSalary]}
               </MenuItem>
             ))}
@@ -210,9 +210,9 @@ const Final = () => {
           }}
           label="Quantas pessoas dependem dessa renda?"
         />
-        <FormControl className=""  size="small" fullWidth>
+        <FormControl size="small" fullWidth>
           <InputLabel id="demo-simple-select-label">
-            No momento atual você considera sua renda suficiente para sua
+            Você considera sua renda suficiente para sua
             sobrevivência?
           </InputLabel>
           <Select
