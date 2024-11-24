@@ -55,7 +55,7 @@ const Final = () => {
       <div className="flex flex-col">
         <Title>Agradecemos muito sua participação!</Title>
         <Paragraph>
-          Antes de terminar, pedimos que você responda 7 perguntas com
+          Antes de terminar, pedimos que você responda 9 perguntas com
           informações pessoais, por favor. Esses dados servirão apenas para
           controle experimental e consulta, caso houver alguma dúvida na
           interpretação dos dados preliminares. Esta parte não é obrigatória.
