@@ -87,8 +87,8 @@ function PagesProvider({ children }: PagesProviderProps) {
 
     setPagesQueue([
       ...pagesQueue,
-      // ...questions,
-      // ...calibrations,
+      ...questions,
+      ...calibrations,
       <Final key={"final"} />,
       <Greet key="greet" />,
     ]);
