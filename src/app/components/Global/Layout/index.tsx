@@ -5,6 +5,7 @@ type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
+
   return (
     <>
       <main className="flex col min-h-screen bg-neutral-300 flex-col items-center justify-center p-2">

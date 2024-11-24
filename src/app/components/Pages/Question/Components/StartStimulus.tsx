@@ -17,6 +17,11 @@ const StartStimulus = () => {
     }
 
     if (indexes_of_first_question_block.includes(actual_page_index)) {
+
+      if (!userAnswers.date_when_starts_first_question) {
+        userAnswers.date_when_starts_first_question = new Date();
+      }
+
       setUserAnswers({
         ...userAnswers,
         time_spent: indexes_of_first_question_block.map(

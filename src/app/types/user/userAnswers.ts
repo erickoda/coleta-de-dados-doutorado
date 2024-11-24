@@ -12,6 +12,7 @@ type UserAnswers = {
   final_questions: FinalQuestionBlock;
   time_spent: TimeSpent[];
   calibrations: Calibration[];
+  date_when_starts_first_question: Date | null;
 };
 
 export default UserAnswers;

@@ -29,27 +29,7 @@ const Final = () => {
   const { go_to_next_page } = usePages();
 
   const [isSendingData, setIsSendingData] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   setUserAnswers({
-  //     ...userAnswers,
-  //     time_spent: userAnswers.time_spent.map((time, index) => {
-  //       if (
-  //         userAnswers.time_spent[userAnswers.time_spent.length - 1].final !== 0
-  //       )
-  //         return time;
-
-  //       if (index === userAnswers.time_spent.length - 1) {
-  //         return {
-  //           initial: time.initial,
-  //           final: performance.now(),
-  //         };
-  //       }
-
-  //       return time;
-  //     }),
-  //   });
-  // }, []);
+  const [finalDate, setFinalDate] = useState<Date>(new Date()); 
 
   return (
     <>
@@ -400,6 +380,12 @@ const Final = () => {
               return parsed_calibrations;
             })();
 
+            const initial_date = userAnswers.date_when_starts_first_question;
+            const final_date = finalDate;
+            const difference_timestamp = ((finalDate.getTime() - (initial_date?.getTime() ?? 0))/1000)
+              .toString()
+              .replaceAll(".", ",");
+
             axios
               .post(`${process.env.NEXT_PUBLIC_DEVELOPMENT_API_URL}`, {
                 ...userAnswers,
@@ -409,11 +395,16 @@ const Final = () => {
                     userAnswers.personal_information.birth_date?.toISOString(),
                 },
                 questions_answers: questions_answers,
-                time_spent: time_spent,
-                calibrations,
+                time_spent: {
+                  ...time_spent,
+                  initial_date,
+                  final_date,
+                  difference_timestamp
+                },
+                calibrations
               })
               .then(() => {
-                go_to_next_page();
+                // go_to_next_page();
               })
               .catch(() => {
                 setIsSendingData(false);
