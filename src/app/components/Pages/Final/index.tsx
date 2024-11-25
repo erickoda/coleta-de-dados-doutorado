@@ -404,7 +404,7 @@ const Final = () => {
                 calibrations
               })
               .then(() => {
-                // go_to_next_page();
+                go_to_next_page();
               })
               .catch(() => {
                 setIsSendingData(false);
