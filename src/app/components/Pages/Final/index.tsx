@@ -380,9 +380,21 @@ const Final = () => {
               return parsed_calibrations;
             })();
 
-            const initial_date = userAnswers.date_when_starts_first_question;
-            const final_date = finalDate;
-            const difference_timestamp = ((finalDate.getTime() - (initial_date?.getTime() ?? 0))/1000)
+            const options: Intl.DateTimeFormatOptions = {
+              timeZone: 'America/Sao_Paulo',
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            };
+
+            const formatter = new Intl.DateTimeFormat('pt-BR', options);
+
+            const initial_date = formatter.format(userAnswers.date_when_starts_first_question ?? undefined);
+            const final_date = formatter.format(finalDate);
+            const difference_timestamp = ((finalDate.getTime() - (userAnswers.date_when_starts_first_question?.getTime() ?? 0))/1000)
               .toString()
               .replaceAll(".", ",");
 
