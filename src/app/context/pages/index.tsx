@@ -24,7 +24,6 @@ function PagesProvider({ children }: PagesProviderProps) {
     <ConsentStatement key={"consent statement"} />,
     <PersonalData key={"persona data"} />,
     <Instructions key={"instructions"} />,
-    <Question.Test key={"Test"} />,
   ]);
 
   const conclusion_percentage = (100 * actual_page_index) / pagesQueue.length - 1;
@@ -57,7 +56,13 @@ function PagesProvider({ children }: PagesProviderProps) {
 
         if (question_numbers.includes(quantity_of_questions)) {
           questions.push(
-            <Question.StartStimulus key={generic_question.question.id} />
+            <Question.StartStimulus isNextPageATutorial key={generic_question.question.id} />
+          );
+        }
+
+        if (quantity_of_questions === 1) {
+          questions.push(
+            <Question.Test key={"Test"} />,
           );
         }
 

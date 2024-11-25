@@ -6,6 +6,7 @@ import { QuestionI } from "@/app/types/question/generic_questions";
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import GenericQuestionStyle from "./GenericQuestionStyle";
+import playAudio from "@/app/utils/playAudio";
 
 type GuessTheTimeSpentProps = {
   question: QuestionI;
@@ -87,7 +88,10 @@ const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
 
       <div className="flex flex-row space-x-2 w-full">
         <Button
-          onClick={() => setStep("guessing")}
+          onClick={() => {
+            playAudio();
+            setStep("guessing");
+          }}
           disabled={step !== "initial"}
           variant="outlined"
           fullWidth
@@ -95,7 +99,10 @@ const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
           Início
         </Button>
         <Button
-          onClick={() => setStep("end")}
+          onClick={() => {
+            playAudio();
+            setStep("end");
+          }}
           disabled={step !== "guessing"}
           variant="outlined"
           fullWidth

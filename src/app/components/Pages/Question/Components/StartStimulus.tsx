@@ -5,7 +5,9 @@ import { usePages } from "@/app/context/pages";
 import { Button } from "@mui/material";
 import React, { useEffect } from "react";
 
-const StartStimulus = () => {
+type StartStimulusProps = { isNextPageATutorial?: boolean };
+
+const StartStimulus = ({isNextPageATutorial}: StartStimulusProps) => {
   const { go_to_next_page, actual_page_index } = usePages();
   const { userAnswers, setUserAnswers } = useAnswers();
 
@@ -107,7 +109,7 @@ const StartStimulus = () => {
       </div>
 
       <Button fullWidth variant="contained" onClick={() => go_to_next_page()}>
-        Iniciar Apresentação do Estímulo
+        {isNextPageATutorial ? "Iniciar Tutorial" : "Iniciar Apresentação do Estímulo"}
       </Button>
     </>
   );

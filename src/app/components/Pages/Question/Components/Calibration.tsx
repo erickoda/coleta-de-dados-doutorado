@@ -3,6 +3,7 @@ import Title from '@/app/components/Global/Title'
 import { useAnswers } from '@/app/context/answers'
 import { usePages } from '@/app/context/pages'
 import CalibrationT from '@/app/types/user/calibration'
+import playAudio from '@/app/utils/playAudio'
 import { Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 
@@ -78,7 +79,10 @@ const Calibration = ({calibration}: CalibrationProps) => {
 
       <div className="flex flex-row space-x-2 w-full">
         <Button
-          onClick={() => setStep("guessing")}
+          onClick={() => {
+            playAudio();
+            setStep("guessing")
+          }}
           disabled={step !== "initial"}
           variant="outlined"
           fullWidth
@@ -86,7 +90,10 @@ const Calibration = ({calibration}: CalibrationProps) => {
           Início
         </Button>
         <Button
-          onClick={() => setStep("end")}
+          onClick={() => {
+            playAudio();
+            setStep("end")
+          }}
           disabled={step !== "guessing"}
           variant="outlined"
           fullWidth
