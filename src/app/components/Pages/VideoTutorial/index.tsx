@@ -11,12 +11,9 @@ const VideoTutorial = () => {
   return (
     <>
       <Title>Vídeo Tutorial</Title>
-      <Paragraph><b>Ligue a legenda do vídeo</b></Paragraph>
 
       <iframe
-        // width="560"
-        // height="315"
-        src="https://www.youtube.com/embed/_dT8xkBJJAg?cc_load_policy=1"
+        src="https://youtube.com/embed/d5CADDbj6cY?cc_load_policy=1"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
         className='lg:w-[35rem] lg:h-[20rem] md:w-[35rem] md:h-[20rem] w-fit'
