@@ -3,9 +3,8 @@ import Title from '@/app/components/Global/Title'
 import { useAnswers } from '@/app/context/answers'
 import { usePages } from '@/app/context/pages'
 import CalibrationT from '@/app/types/user/calibration'
-import playAudio from '@/app/utils/playAudio'
 import { Button } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 type CalibrationProps = {
   calibration: CalibrationT;
@@ -18,8 +17,6 @@ const Calibration = ({calibration}: CalibrationProps) => {
   
     const [step, setStep] = useState<"initial" | "guessing" | "end">("initial");
     const [initialTime, setInitialTime] = useState<DOMHighResTimeStamp>(0);
-
-    const audioRef = useRef<HTMLAudioElement>(null);
 
     useEffect(() => {
       setUserAnswers({
@@ -82,7 +79,6 @@ const Calibration = ({calibration}: CalibrationProps) => {
       <div className="flex flex-row space-x-2 w-full">
         <Button
           onClick={() => {
-            playAudio(audioRef);
             setStep("guessing")
           }}
           disabled={step !== "initial"}
@@ -93,7 +89,6 @@ const Calibration = ({calibration}: CalibrationProps) => {
         </Button>
         <Button
           onClick={() => {
-            playAudio(audioRef);
             setStep("end")
           }}
           disabled={step !== "guessing"}
@@ -111,11 +106,6 @@ const Calibration = ({calibration}: CalibrationProps) => {
       >
         Continuar
       </Button>
-
-      <audio ref={audioRef}>
-        <source src="/A.mp3" type="audio/mp3" />
-        Your browser does not support the audio element.
-      </audio>
 
     </>
   )
