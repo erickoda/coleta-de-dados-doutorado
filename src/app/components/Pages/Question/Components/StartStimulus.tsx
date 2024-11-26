@@ -15,7 +15,7 @@ const StartStimulus = ({isNextPageATutorial}: StartStimulusProps) => {
     const indexes_of_first_question_block: number[] = [];
 
     for (let i = 0; i < 2; i++) {
-      indexes_of_first_question_block.push(11 + (i * 9 * 2 + (i === 0 ? 0 : 1)));
+      indexes_of_first_question_block.push(12 + (i * 9 * 2 + (i === 0 ? 0 : 1)));
     }
 
     if (indexes_of_first_question_block.includes(actual_page_index)) {

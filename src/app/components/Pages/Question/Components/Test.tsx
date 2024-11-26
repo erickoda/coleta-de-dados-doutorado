@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import React from "react";
 
 const Test = () => {
-  const { go_to_next_page } = usePages();
+  const { go_to_previous_page, go_to_next_page } = usePages();
 
   return (
     <>
@@ -16,7 +16,11 @@ const Test = () => {
           perguntas!
         </Paragraph>
       </div>
-      <div className="w-full flex flex-row justify-center">
+      <div className="w-full flex flex-row justify-center space-x-2">
+        <Button onClick={() => go_to_previous_page()}>
+          Voltar
+        </Button>
+
         <Button variant="contained" onClick={() => go_to_next_page()}>
           Continuar
         </Button>

@@ -10,6 +10,7 @@ import Question from "@/app/components/Pages/Question";
 import Final from "@/app/components/Pages/Final";
 import Greet from "@/app/components/Pages/Greet";
 import MockedCalibrations from "@/app/mock/calibration";
+import VideoTutorial from "@/app/components/Pages/VideoTutorial";
 
 const PagesContext = createContext<PageContext>({} as PageContext);
 
@@ -56,11 +57,17 @@ function PagesProvider({ children }: PagesProviderProps) {
 
         if (question_numbers.includes(quantity_of_questions)) {
           questions.push(
-            <Question.StartStimulus isNextPageATutorial key={generic_question.question.id} />
+            <Question.StartStimulus
+              isNextPageATutorial={quantity_of_questions === 1 ? true : false}
+              key={generic_question.question.id}
+            />
           );
         }
 
         if (quantity_of_questions === 1) {
+          questions.push(
+            <VideoTutorial key={"Vídeo"} />
+          );
           questions.push(
             <Question.Test key={"Test"} />,
           );
