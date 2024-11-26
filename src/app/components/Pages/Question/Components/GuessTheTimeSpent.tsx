@@ -4,7 +4,7 @@ import { useAnswers } from "@/app/context/answers";
 import { usePages } from "@/app/context/pages";
 import { QuestionI } from "@/app/types/question/generic_questions";
 import { Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import GenericQuestionStyle from "./GenericQuestionStyle";
 import playAudio from "@/app/utils/playAudio";
 
@@ -18,6 +18,7 @@ const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
 
   const [step, setStep] = useState<"initial" | "guessing" | "end">("initial");
   const [initialTime, setInitialTime] = useState<DOMHighResTimeStamp>(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (step === "initial") {
@@ -89,7 +90,7 @@ const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
       <div className="flex flex-row space-x-2 w-full">
         <Button
           onClick={() => {
-            playAudio();
+            playAudio(audioRef);
             setStep("guessing");
           }}
           disabled={step !== "initial"}
@@ -100,7 +101,7 @@ const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
         </Button>
         <Button
           onClick={() => {
-            playAudio();
+            playAudio(audioRef);
             setStep("end");
           }}
           disabled={step !== "guessing"}
@@ -118,6 +119,11 @@ const GuessTheTimeSpent = ({ question }: GuessTheTimeSpentProps) => {
       >
         Continuar
       </Button>
+
+      <audio ref={audioRef}>
+        <source src="/A.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
     </>
   );
 };

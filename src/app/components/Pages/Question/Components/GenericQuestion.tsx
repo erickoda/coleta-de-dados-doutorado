@@ -2,10 +2,10 @@
 
 import { useAnswers } from "@/app/context/answers";
 import { QuestionI } from "@/app/types/question/generic_questions";
-import playAudio from "@/app/utils/playAudio";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import GenericQuestionStyle from "./GenericQuestionStyle";
 import { usePages } from "@/app/context/pages";
+import playAudio from "@/app/utils/playAudio";
 
 type GenericQuestionProps = {
   question: QuestionI;
@@ -16,10 +16,11 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
   const { go_to_previous_page } = usePages();
   const [ timeHasExpired, setTimeHasExpired ] = useState<boolean>(false);
   const isATutorialQuestion = [1, 2].includes(question.id); 
+  const audioRef = useRef<HTMLAudioElement>(null);
   
   
   useEffect(() => {
-    playAudio();
+    playAudio(audioRef);
 
     if (isATutorialQuestion) {
       const timeout_to_max_time_to_answer = setTimeout(() =>
@@ -50,7 +51,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
       )?.answer === question.second.answer;
 
     if (!timeHasExpired) {
-      playAudio();
+      playAudio(audioRef);
 
       if (isATutorialQuestion) {
         const timeout_to_max_time_to_answer = setTimeout(() =>
@@ -83,7 +84,7 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
       return;
     }
 
-    playAudio();
+    playAudio(audioRef);
   }, [timeHasExpired]);
 
   return (
@@ -112,6 +113,11 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
       
         disabledNextButton={!timeHasExpired}
       />
+
+      <audio ref={audioRef}>
+        <source src="/A.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
     </>
   );
 };

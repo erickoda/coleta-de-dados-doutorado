@@ -1,9 +1,4 @@
-import * as Tone from 'tone';
-
-export default function playAudio(): void {
-  const synth = new Tone.Synth().toDestination();
-  const now = Tone.now();
-
-  synth.triggerAttack("A4", now);
-  synth.triggerRelease(now + 0.1);
+export default function playAudio(audioRef: React.RefObject<HTMLAudioElement>): void {
+  if (audioRef.current === null) return;
+  audioRef.current.play();
 }
