@@ -14,11 +14,12 @@ const VideoTutorial = () => {
       <Paragraph><b>Ligue a legenda do vídeo</b></Paragraph>
 
       <iframe
-        width="560"
-        height="315"
+        // width="560"
+        // height="315"
         src="https://www.youtube.com/embed/_dT8xkBJJAg?cc_load_policy=1"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
+        className='lg:w-[35rem] lg:h-[20rem] md:w-[35rem] md:h-[20rem] w-fit'
       >
       </iframe>
 
