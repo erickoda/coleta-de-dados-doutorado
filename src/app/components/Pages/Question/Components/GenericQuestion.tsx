@@ -75,9 +75,8 @@ const GenericQuestion = ({ question }: GenericQuestionProps) => {
 
     if (timeHasExpired && !user_has_answered) {
       let isATutorialQuestion = [1, 2].includes(question.id); 
-      if (!isATutorialQuestion) {
-        alert("Você não respondeu a tempo, por favor, tente novamente.");
-      } else {
+      alert("Você não respondeu a tempo, por favor, tente novamente.");
+      if (isATutorialQuestion) {
         go_to_previous_page();
       }
       setTimeHasExpired(false);
